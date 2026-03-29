@@ -229,7 +229,7 @@ bindsym $mod+o mode "$mode_open"
 mode "$mode_open" {
   bindsym b exec firefox; mode "default"
   bindsym c exec mathematica; mode "default"
-  bindsym f exec spacefm $HOME; mode "default"
+  bindsym f exec pcmanfm $HOME; mode "default"
   bindsym m exec deadbeef; mode "default"
   bindsym p exec firefox --private-profile; mode "default"
 
@@ -304,6 +304,7 @@ for_window [window_type="(?i)utility"] floating enable
 
 for_window [class="Anki"] floating enable
 for_window [class="Arandr"] floating enable
+for_window [class="Engrampa"] floating enable
 for_window [class="(?i)matplotlib"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="(?i)nm-connection-editor"] floating enable
@@ -319,8 +320,8 @@ for_window [window_type="splash"] border pixel 0 # Mathematica logo, for example
 for_window [class="URxvt"] move container to workspace $ws1
 for_window [class="URxvt"] focus
 
-for_window [class="Spacefm"] move container to workspace $ws1
-for_window [class="Spacefm"] focus
+for_window [class="Pcmanfm"] move container to workspace $ws1
+for_window [class="Pcmanfm"] focus
 
 # Browsers (workspace $ws2) {{{2
 # ------------------------------

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Always have just one window open.  We can always split that window
+# within SpaceFM if needed.
+# exec /usr/bin/spacefm --no-desktop --reuse-tab --no-saved-tabs "$@"
+exec /usr/bin/pcmanfm --no-desktop "$@"

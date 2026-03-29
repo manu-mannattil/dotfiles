@@ -114,7 +114,7 @@ PACKAGES=(
   libnotify-bin # sends desktop notifications to a notification daemon
   openbox # standards-compliant, fast, light-weight and extensible window manager
   rofi # window switcher, run dialog and dmenu replacement
-  spacefm-gtk3 # Multi-panel tabbed file manager - GTK3 version
+  pcmanfm # file manager from the LXDE project
   suckless-tools # simple commands for minimalistic window managers
   tint2 # panel for openbox desktop
   wmctrl # control an EWMH/NetWM compatible X Window Manager

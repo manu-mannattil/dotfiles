@@ -383,6 +383,12 @@ __install_parallel() {
     install "parallel/.parallel/config"
 }
 
+# :target: pcmanfm - PCManFM configuration
+__install_pcmanfm() {
+    install --copy "pcmanfm/.config/libfm/libfm.conf"
+    install --copy "pcmanfm/.config/pcmanfm/default/pcmanfm.conf"
+}
+
 # :target: picom - picom compositor
 __install_picom() {
     install "picom/.config/picom.conf"
@@ -415,11 +421,6 @@ __install_ripgrep() {
 # :target: rofi - rofi configuration
 __install_rofi() {
     install "rofi/.config/rofi"
-}
-
-# :target: spacefm - SpaceFM file manager config
-__install_spacefm() {
-    install --copy "spacefm/.config/spacefm/session"
 }
 
 # :target: ssh - SSH config
