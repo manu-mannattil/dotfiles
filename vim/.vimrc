@@ -366,9 +366,9 @@ augroup ft_related
   " <esc>v in Bash's Vi mode).
   autocmd BufRead,BufNewFile /tmp/bash-fc-* set filetype=sh
 
-  " For "files" edited with vidir, assume that the underscore is a word
-  " boundary.
-  autocmd BufRead,BufNewFile /tmp/dir* setlocal iskeyword-=_
+  " For "files" edited with vidir, edir, etc., assume that the
+  " underscore is a word boundary.
+  autocmd BufRead,BufNewFile /tmp/dir*,/tmp/*/edir.sh setlocal iskeyword-=_
 
   " Detect files starting with #!/bin/dash, #!/bin/posh files as sh.
   autocmd BufRead,BufNewFile *

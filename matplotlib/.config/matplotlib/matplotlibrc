@@ -10,3 +10,12 @@ mathtext.fontset: stixsans
 # Use a larger DPI when saving figures since a lot of people use HiDPI displays
 # these days.
 savefig.dpi: 300
+
+# Plot style.
+figure.figsize: 5.663, 3.5
+legend.frameon: False
+lines.markerfacecolor: "none"
+scatter.edgecolors: "none"
+xtick.minor.visible: True
+ytick.minor.visible: True
+figure.constrained_layout.use: True

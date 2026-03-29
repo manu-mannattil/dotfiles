@@ -270,12 +270,14 @@ __install_git() {
     install "git/.gitconfig" "git/.gitattributes" "git/.git-pass"
 }
 
-# :target: gtk - GTK 2/3 configuration
+# :target: gtk - GTK configuration
 __install_gtk() {
-    install "gtk/.gtkrc-2.0"        \
-            "gtk/.gtkrc-hidpi-2.0"  \
-            "gtk/.config/gtk-3.0"   \
-            "gtk/.config/gtk-4.0"
+    # Don't symlink the gtk-3.0, gtk-4.0 directories directly.
+    # Some programs (e.g., PCManFM) use these directories to store bookmarks.
+    install "gtk/.gtkrc-2.0"                    \
+            "gtk/.gtkrc-hidpi-2.0"              \
+            "gtk/.config/gtk-3.0/settings.ini"  \
+            "gtk/.config/gtk-4.0/settings.ini"
 }
 
 # :target: htop - htop configuration
@@ -283,7 +285,7 @@ __install_htop() {
     install --copy "htop/.config/htop"
 }
 
-# :target: i3 - i3 wm configuration
+# :target: i3 - i3wm configuration
 __install_i3() {
     install "i3/.config/i3/config"
     install --template "i3/.config/i3/i3status.conf"

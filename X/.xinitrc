@@ -126,7 +126,7 @@ fi
 
 # Qt theming.
 export QT_QPA_PLATFORMTHEME=gtk3
-export QT_STYLE_OVERRIDE="adwaita-dark"
+# export QT_STYLE_OVERRIDE="adwaita-dark"
 
 # Turn off the system bell.
 xset b off
@@ -194,7 +194,7 @@ dunst &
 # Control computer usage.
 xwrits top clock breakclock mouse=5 &
 
-# A compositor is required with newer Intel driver.
+# A compositor is required with the newer Intel drivers.
 picom &
 
 # Since updating to Debian 10.10, launching the WM using dbus-launch
