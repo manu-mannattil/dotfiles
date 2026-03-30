@@ -256,6 +256,10 @@ __install_fontconfig() {
     install "fontconfig/.config/fontconfig"
 }
 
+__install_gimp() {
+    install --copy "gimp/.config/GIMP/3.0/gimprc"
+}
+
 # :target: gnupg - GnuPG configuration
 __install_gnupg() {
     install --copy "gnupg/.gnupg/gpg.conf" "gnupg/.gnupg/gpg-agent.conf"
