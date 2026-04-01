@@ -6,19 +6,19 @@ case "$1" in
     # use the incognito mode.
     --private-profile)
         shift
-        if grep -q 'Name=private' "$HOME/.mozilla/firefox/profiles.ini" >/dev/null 2>&1
+        if grep -q 'Name=private' "$HOME/.config/mozilla/firefox/profiles.ini" >/dev/null 2>&1
         then
             profile="private"
-            rm -rf  ~/.cache/mozilla/firefox/*.private                \
-                    ~/.mozilla/firefox/*.private/content-prefs.sqlite \
-                    ~/.mozilla/firefox/*.private/cookies.sqlite       \
-                    ~/.mozilla/firefox/*.private/formhistory.sqlite   \
-                    ~/.mozilla/firefox/*.private/storage.sqlite       \
-                    ~/.mozilla/firefox/*.private/webappsstore.sqlite  \
-                    ~/.mozilla/firefox/*.private/crashes              \
-                    ~/.mozilla/firefox/*.private/datareporting        \
-                    ~/.mozilla/firefox/*.private/minidumps            \
-                    ~/.mozilla/firefox/*.private/storage
+            rm -rf  ~/.cache/mozilla/firefox/*.private                          \
+                    ~/.config/mozilla/firefox/*.private/content-prefs.sqlite    \
+                    ~/.config/mozilla/firefox/*.private/cookies.sqlite          \
+                    ~/.config/mozilla/firefox/*.private/formhistory.sqlite      \
+                    ~/.config/mozilla/firefox/*.private/storage.sqlite          \
+                    ~/.config/mozilla/firefox/*.private/webappsstore.sqlite     \
+                    ~/.config/mozilla/firefox/*.private/crashes                 \
+                    ~/.config/mozilla/firefox/*.private/datareporting           \
+                    ~/.config/mozilla/firefox/*.private/minidumps               \
+                    ~/.config/mozilla/firefox/*.private/storage
         else
             set -- --private-window "$@"
         fi

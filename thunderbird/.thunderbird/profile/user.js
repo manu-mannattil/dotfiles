@@ -9,6 +9,7 @@
 // Resources
 // ---------
 //
+// https://www.betterbird.eu/expert-tips/
 // https://github.com/HorlogeSkynet/thunderbird-user.js
 // https://github.com/arkenfox/user.js/issues/646#issuecomment-466434739
 // https://gitlab.torproject.org/legacy/gitolite/torbirdy/-/blob/HEAD/components/torbirdy.js
@@ -49,6 +50,16 @@ user_pref("mail.tabs.drawInTitlebar", false);
 
 // Always keep threads open (i.e., uncollapsed).
 user_pref("mailnews.thread_expand_all", true);
+
+// Custom date/time formatting.
+// https://unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
+// https://enterprise.thunderbird.net/manage-updates-policies-and-customization/thunderbird-preferences-enterprise/customize-thunderbirds-date-and-time-formats
+// 1 = short date, 2 = long date, 3 = year/month separated by slash, 4 = just day.
+// Dates in messages from this week, e.g., "Fri 10:23 AM".
+user_pref("mail.ui.display.dateformat.thisweek", 4);
+
+// Always display the timezone of sender.
+user_pref("mailnews.display.date_senders_timezone", true);
 
 // Internal custom pref to ensure that we've reach the end without syntax errors.
 user_pref("_user.js.parrot", "SUCCESS: Thunderbird is not dead, he's, he's restin'!");

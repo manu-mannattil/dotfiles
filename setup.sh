@@ -224,30 +224,30 @@ __install_firefox() {
         'https://raw.githubusercontent.com/arkenfox/user.js/refs/heads/master/prefsCleaner.sh'
 
     # Symlink/copy some files in all Firefox profiles.
-    if [[ -f "$HOME/.mozilla/firefox/profiles.ini" ]]
+    if [[ -f "$HOME/.config/mozilla/firefox/profiles.ini" ]]
     then
         while IFS= read -r profile
         do
-            ln -v -sf "$REPO/firefox/.mozilla/firefox/profile/user.js"      \
-                "$HOME/.mozilla/firefox/$profile"
+            ln -v -sf "$REPO/firefox/.config/mozilla/firefox/profile/user.js"      \
+                "$HOME/.config/mozilla/firefox/$profile"
             echo >&2 "${0##*/}: firefox: linked user.js for $profile"
 
-            cp -v -f "$REPO/firefox/.mozilla/firefox/profile/handlers.json" \
-                "$HOME/.mozilla/firefox/$profile"
+            cp -v -f "$REPO/firefox/.config/mozilla/firefox/profile/handlers.json" \
+                "$HOME/.config/mozilla/firefox/$profile"
             echo >&2 "${0##*/}: firefox: copied handlers.json for $profile"
 
-            cp -v -f /tmp/prefsCleaner.sh "$HOME/.mozilla/firefox/$profile"
-            chmod +x "$HOME/.mozilla/firefox/$profile/prefsCleaner.sh"
+            cp -v -f /tmp/prefsCleaner.sh "$HOME/.config/mozilla/firefox/$profile"
+            chmod +x "$HOME/.config/mozilla/firefox/$profile/prefsCleaner.sh"
             echo >&2 "${0##*/}: firefox: installed prefsCleaner.sh for $profile"
-        done < <(sed -n 's/^Path=//p' "$HOME/.mozilla/firefox/profiles.ini")
+        done < <(sed -n 's/^Path=//p' "$HOME/.config/mozilla/firefox/profiles.ini")
     fi
 
     # Symlink `chrome' directory to default profile.
-    default=$(echo "$HOME/.mozilla/firefox/"*.default)
+    default=$(echo "$HOME/.config/mozilla/firefox/"*.default)
     if [[ -d "$default" ]]
     then
         rm -vrf "$default/chrome"
-        ln -v -sf "$REPO/firefox/.mozilla/firefox/profile/chrome" "$default"
+        ln -v -sf "$REPO/firefox/.config/mozilla/firefox/profile/chrome" "$default"
     fi
 }
 
