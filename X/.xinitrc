@@ -126,6 +126,7 @@ fi
 
 # Qt theming.
 export QT_QPA_PLATFORMTHEME=gtk3
+# This seems to make the theming in some apps worse, e.g., qpdfview.
 # export QT_STYLE_OVERRIDE="adwaita-dark"
 
 # Turn off the system bell.

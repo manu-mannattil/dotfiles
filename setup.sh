@@ -373,6 +373,10 @@ __install_mutt() {
     mkdir -vp "$HOME/.cache/mutt/headers"
 }
 
+__install_nicotine() {
+    install --copy "$REPO/nicotine/.config/nicotine/config"
+}
+
 # :target: notmuch - notmuch mail indexer configuration
 __install_notmuch() {
     install "notmuch/.notmuch-config"
@@ -451,16 +455,16 @@ __install_thunderbird() {
             rm -f "$HOME/.thunderbird/$profile/user.js"
 
             # Use preferences from Firefox's user.js as well.
-            cat "$REPO/firefox/.mozilla/firefox/profile/user.js" >  \
-                "$HOME/.thunderbird/$profile/user.js"
+            cat "$REPO/firefox/.config/mozilla/firefox/profile/user.js" >  \
+            "$HOME/.thunderbird/$profile/user.js"
 
             printf "\n\n" >>"$HOME/.thunderbird/$profile/user.js"
 
-            cat "$REPO/thunderbird/.thunderbird/profile/user.js" >> \
-                "$HOME/.thunderbird/$profile/user.js"
+            cat "$REPO/thunderbird/.thunderbird/profile/user.js" >>        \
+            "$HOME/.thunderbird/$profile/user.js"
             echo >&2 "${0##*/}: thunderbird: created user.js for $profile"
 
-            ln -v -sf "$REPO/thunderbird/.thunderbird/profile/chrome" \
+            ln -v -sf "$REPO/thunderbird/.thunderbird/profile/chrome"      \
                 "$HOME/.thunderbird/$profile"
         done < <(sed -n 's/^Path=//p' "$HOME/.thunderbird/profiles.ini")
     fi

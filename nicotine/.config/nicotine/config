@@ -1,0 +1,8 @@
+[transfers]
+incompletedir = music/uncat
+downloaddir = music/uncat
+uploaddir = music/uncat
+shared = [('music')]
+
+[ui]
+header_bar = False
