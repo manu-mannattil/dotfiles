@@ -132,11 +132,6 @@ export QT_QPA_PLATFORMTHEME=gtk3
 # Turn off the system bell.
 xset b off
 
-# Make GTK/QT apps use X input method (Xim).
-# Without this, custom mappings in ~/.XCompose won't work.
-export GTK_IM_MODULE="xim"
-export QT_IM_MODULE="xim"
-
 # Use a plain text file for all gsettings configurations.
 # The file itself is at ~/.config/dconf/user.txt.
 # Without this, some GTK applications (Firefox, for example) does not
