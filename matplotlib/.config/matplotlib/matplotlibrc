@@ -1,11 +1,12 @@
 # https://raw.githubusercontent.com/matplotlib/matplotlib/master/matplotlibrc.template
 
 # Default font family and font choices.
-font.family: sans-serif
-font.sans-serif: Helvetica, Arial, sans-serif
-
-# Use STIX fonts for math.
-mathtext.fontset: stixsans
+font.family: serif
+font.serif: Palatino Linotype, serif
+mathtext.fontset: custom
+mathtext.rm: Palatino Linotype
+mathtext.it: Palatino Linotype:italic
+mathtext.bf: Palatino Linotype:bold
 
 # Use a larger DPI when saving figures since a lot of people use HiDPI displays
 # these days.
