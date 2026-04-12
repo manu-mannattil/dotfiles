@@ -374,7 +374,7 @@ __install_mutt() {
 }
 
 __install_nicotine() {
-    install --copy "$REPO/nicotine/.config/nicotine/config"
+    install --copy "nicotine/.config/nicotine/config"
 }
 
 # :target: notmuch - notmuch mail indexer configuration

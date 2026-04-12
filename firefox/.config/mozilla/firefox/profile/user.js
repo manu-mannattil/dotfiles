@@ -363,11 +363,10 @@ user_pref("dom.text_fragments.enabled", false);
 user_pref("dom.text_fragments.create_text_fragment.enabled", false);
 
 // Disable unused pdfjs features.
-user_pref("pdfjs.annotationMode", 0);
-user_pref("pdfjs.enableComment", false);
-user_pref("pdfjs.enableSignatureEditor", false);
-user_pref("pdfjs.enableHighlightFloatingButton", false);
 user_pref("pdfjs.annotationEditorMode", 1);
+user_pref("pdfjs.enableComment", false);
+user_pref("pdfjs.enableHighlightFloatingButton", false);
+user_pref("pdfjs.enableSignatureEditor", false);
 
 // Internal custom pref to ensure that we've reach the end without syntax errors.
 user_pref("_user.js.parrot", "SUCCESS: Firefox is not dead, he's, he's restin'!");
