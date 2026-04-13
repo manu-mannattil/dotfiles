@@ -282,6 +282,8 @@ __install_gtk() {
             "gtk/.gtkrc-hidpi-2.0"              \
             "gtk/.config/gtk-3.0/settings.ini"  \
             "gtk/.config/gtk-4.0/settings.ini"
+
+    install --copy "gtk/.config/gtk-3.0/bookmarks"
 }
 
 # :target: htop - htop configuration
