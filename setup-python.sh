@@ -89,6 +89,8 @@ PROGRAMS=(
   maestral
   # download files from Google Drive
   gdown
+  # compress and optimize SVGs.
+  scour
 )
 
 install_pipx_programs() {

@@ -3,15 +3,20 @@
 > "The Buddha, the Godhead, resides quite as comfortably in the circuits
 > of a digital computer or the gears of a cycle transmission as he does
 > at the top of a mountain or in the petals of a flower. To think
-> otherwise is to demean the Buddha, which is to demean oneself." 
+> otherwise is to demean the Buddha, which is to demean oneself."
 > -- Robert M. Pirsig, *Zen and the Art of Motorcycle Maintenance*
 
 This is a repository for managing my configuration files (aka dotfiles), meticulously yak shaved since 2010 or so and contains about <!--FILES-->227 configuration files for about <!--PROGRAMS-->60
 programs.  There are [many like it][others], but this one is mine.
 
+I get almost all the software I use from the Debian repositories.  For
+that reason, most of the configuration files in this repository are
+meant to be used with the software versions available in [Debian
+stable][debian].
+
 ## Setup
 
-To setup the configuration files, clone the repository and run the
+To set up the configuration files, clone the repository and run the
 `setup.sh` script.  `setup.sh` can take one or more targets as
 arguments.  In that case, configuration files for only those targets
 will be installed.  Targets can be grouped into groups.  As an example,
@@ -74,5 +79,6 @@ Public domain.  See the file UNLICENSE for more details.
 (Quite obviously this only applies to stuff I've written, i.e., things
 without an explicit attribution.)
 
+[debian]: https://packages.debian.org/stable
 [others]: https://github.com/search?q=dotfiles+OR+configs
 [stow]: https://www.gnu.org/software/stow/stow.html

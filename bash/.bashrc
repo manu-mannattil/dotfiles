@@ -442,7 +442,7 @@ lyrics() {
 
 mbsync() {
     [[ "$*" ]] || set -- "$MUTT_PROFILE"
-    command mbsync "$@" && notmuch new && {
+    command mbsync "$@" && spam-filter && notmuch new && {
         # Print number of new messages in each folder.  Unlike OfflineIMAP,
         # mbsync's output is somewhat cryptic and it's not always clear
         # which folders have new messages.

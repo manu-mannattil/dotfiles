@@ -301,6 +301,7 @@ PACKAGES=(
   bibtool # tool to manipulate BibTeX files
   diction # Utilities to help with style and diction (English and German)
   libreoffice libreoffice-gtk3 libreoffice-gtk4 # office productivity suite
+  hunspell-en-us hunspell-en-gb mythes-en-us hyphen-en-us # spell checker and hyphenator
   sdcv # StarDict Console Version
   texlive-full # TeX Live: metapackage pulling in all components of TeX Live
   wdiff # compare two files word by word
