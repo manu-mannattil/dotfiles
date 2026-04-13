@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bas
 # vim: ft=sh fdm=marker et sts=2 sw=2
 #
 # setup-debian.sh -- Debian post-installation script
@@ -11,7 +11,6 @@
 # in the Debian repositories, some packages need to be manually
 # installed:
 #
-#   czkawka               https://github.com/qarmin/czkawka/releases
 #   DeaDBeeF              https://deadbeef.sourceforge.io/download.html
 #   Geekbench             https://www.geekbench.com/download/linux
 #   git-latexdiff         https://gitlab.com/git-latexdiff/git-latexdiff
@@ -225,6 +224,7 @@ PACKAGES=(
   libimage-exiftool-perl # library and program to read and write meta information in multimedia files
   optipng # advanced PNG (Portable Network Graphics) optimizer
   pngcrush # optimizes PNG (Portable Network Graphics) files
+  czkawka-cli # Multi functional app to find duplicates, empty folders, similar images etc
 
   # Internet
   elinks # advanced text-mode WWW browser
