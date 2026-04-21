@@ -309,6 +309,7 @@ for_window [class="(?i)matplotlib"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="(?i)nm-connection-editor"] floating enable
 for_window [title="editinvim"] floating enable
+for_window [class="calibre"] floating enable
 
 # No border for the applications below.
 for_window [class="XWrits"] border pixel 0

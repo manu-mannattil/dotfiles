@@ -1,8 +1,5 @@
 # vim: ft=muttrc fdm=marker et sts=2 sw=2
 
-# NOTE: Comment out the system wide mutt configuration in /etc/Muttrc as it
-# might contain options that might conflict with this configuration file.
-
 # Profile management {{{1
 # -----------------------
 

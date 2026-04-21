@@ -12,8 +12,10 @@ setlocal wildignore+=*.Notes.bib,*.acn,*.acr,*.alg,*.aux,*.bcf,*.blg,*.dvi,*.fdb
 setlocal suffixes+=*.bbl,*.sty,*.bst,*.cls
 
 " Use BibTool for formatting if available.
-if executable('bibtool')
-  "setlocal formatprg=bibtool\ -q
+if executable('bibclean')
   setlocal formatprg=bibclean
+  noremap <buffer> Q gq
+elseif executable('bibtool')
+  setlocal formatprg=bibtool\ -q
   noremap <buffer> Q gq
 endif
