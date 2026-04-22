@@ -24,26 +24,7 @@
 //    set globally using the policies.json file.
 //
 
-// ------------- Updates -------------
-
-// Disable auto updates and notifications.  Doesn't work since FF 88;
-// create policies file instead:
-// https://linuxreviews.org/HOWTO_Make_Mozilla_Firefox_Stop_Nagging_You_About_Updates_And_Other_Annoying_Idiocy
-user_pref("app.update.BITS.enabled", false);
-user_pref("app.update.auto", false);
-user_pref("app.update.autoInstallEnabled", false);
-user_pref("app.update.background.scheduling.enabled", false);
-user_pref("app.update.checkInstallTime", false);
-user_pref("app.update.doorhanger", false);
-user_pref("app.update.enabled", false);
-user_pref("app.update.lastUpdateTime.background-update-timer", 0);
-user_pref("app.update.service.enabled", false);
-user_pref("app.update.silent", true);
-user_pref("app.update.url", "");
-user_pref("app.update.url.manual", "");
-user_pref("lightweightThemes.update.enabled", false);
-
-// ------------- Privacy and Security -------------
+// ------------- Privacy and security -------------
 
 // Block social media tracking.
 user_pref("privacy.trackingprotection.socialtracking.enabled", true);
@@ -94,16 +75,39 @@ user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.pinned", "");
 user_pref("browser.tabs.firefox-view", false);
+user_pref("browser.urlbar.addons.featureGate", false);
+user_pref("browser.urlbar.amp.featureGate", false);
 user_pref("browser.urlbar.fakespot.featureGate", false);
+user_pref("browser.urlbar.importantDates.featureGate", false);
+user_pref("browser.urlbar.market.featureGate", false);
 user_pref("browser.urlbar.mdn.featureGate", false);
 user_pref("browser.urlbar.pocket.featureGate", false);
+user_pref("browser.urlbar.suggest.addons", false);
+user_pref("browser.urlbar.suggest.amp", false);
+user_pref("browser.urlbar.suggest.fakespot", false);
+user_pref("browser.urlbar.suggest.importantDates", false);
+user_pref("browser.urlbar.suggest.market", false)
+user_pref("browser.urlbar.suggest.market", false);
+user_pref("browser.urlbar.suggest.mdn", false);
+user_pref("browser.urlbar.suggest.pocket", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
+user_pref("browser.urlbar.suggest.suggest.market", false)
+user_pref("browser.urlbar.suggest.suggest.quicksuggest.nonsponsored", false);
+user_pref("browser.urlbar.suggest.suggest.quicksuggest.sponsored", false);
+user_pref("browser.urlbar.suggest.suggest.topsites", false);
+user_pref("browser.urlbar.suggest.suggest.trending", false);
 user_pref("browser.urlbar.suggest.topsites", false);
 user_pref("browser.urlbar.suggest.trending", false);
+user_pref("browser.urlbar.suggest.weather", false);
+user_pref("browser.urlbar.suggest.wikipedia", false);
+user_pref("browser.urlbar.suggest.yelp", false);
+user_pref("browser.urlbar.suggest.yelpRealtime", false);
 user_pref("browser.urlbar.trending.featureGate", false);
 user_pref("browser.urlbar.weather.featureGate", false);
+user_pref("browser.urlbar.wikipedia.featureGate", false);
 user_pref("browser.urlbar.yelp.featureGate", false);
+user_pref("browser.urlbar.yelpRealtime.featureGate", false);
 user_pref("services.sync.prefs.sync.browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("services.sync.prefs.sync.browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 
