@@ -586,14 +586,14 @@ __parse_group() {
             # on a headless server.
             targets+=(
                 bash
+                btop
+                ctags
                 curl
                 dircolors
                 emacs
                 git
                 gnupg
                 htop
-                btop
-                ctags
                 ipython
                 less
                 parallel

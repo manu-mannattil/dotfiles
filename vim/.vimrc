@@ -1,5 +1,4 @@
 " vim: ft=vim fdm=marker et sts=2 sw=2
-"
 
 " Preamble {{{1
 " -------------

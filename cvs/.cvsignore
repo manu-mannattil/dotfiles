@@ -44,3 +44,6 @@ a.out
 .syncthing.*.tmp
 ~syncthing~*.tmp
 .stfolder
+
+# Libreoffice
+.~lock.*

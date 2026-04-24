@@ -126,8 +126,6 @@ fi
 
 # Qt theming.
 export QT_QPA_PLATFORMTHEME=gtk3
-# This seems to make the theming in some apps worse, e.g., qpdfview.
-# export QT_STYLE_OVERRIDE="adwaita-dark"
 
 # Turn off the system bell.
 xset b off
@@ -148,17 +146,7 @@ export DCONF_PROFILE="$HOME/.config/dconf/profile"
 # lv3:ralt_switch = right alt is altgr
 # rupeesign:4 = altgr + 4 gives rupee sign
 # terminate:ctrl_alt_bkspc = ctrl + alt + bkspc terminates X
-
-# setxkbmap -variant altgr-intl              \
-#           -option compose:rctrl            \
-#           -option caps:swapescape          \
-#           -option lv3:ralt_switch          \
-#           -option rupeesign:4              \
-#           -option terminate:ctrl_alt_bkspc
-
-setxkbmap -option caps:swapescape          \
-          -option rupeesign:4              \
-          -option terminate:ctrl_alt_bkspc
+setxkbmap -option caps:swapescape
 
 # Start redshift to adjust screen temperature.
 # The actual latitude:longitude is set in ~/.location
