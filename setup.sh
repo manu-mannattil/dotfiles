@@ -213,14 +213,12 @@ __install_filezilla() {
 
 # :target: firefox - Firefox configuration
 __install_firefox() {
-    [[ -f /usr/bin/firefox ]] || {
-        info "firefox binary not found; fetching..."
-        pushd "$REPO/firefox"
-        sudo make install
-        popd
-    }
+    info "firefox: copying policies.json to /etc/firefox/policies/"
+    sudo mkdir -vp "/etc/firefox/policies/"
+    sudo cp -vf "$REPO/firefox/policies.json" "/etc/firefox/policies/policies.json"
 
-    wget --no-config --quiet -O /tmp/prefsCleaner.sh \
+    prefsCleaner="/tmp/prefsCleaner.$RANDOM.sh"
+    wget --no-config --quiet -O "$prefsCleaner" \
         'https://raw.githubusercontent.com/arkenfox/user.js/refs/heads/master/prefsCleaner.sh'
 
     # Symlink/copy some files in all Firefox profiles.
@@ -236,7 +234,7 @@ __install_firefox() {
                 "$HOME/.config/mozilla/firefox/$profile"
             echo >&2 "${0##*/}: firefox: copied handlers.json for $profile"
 
-            cp -v -f /tmp/prefsCleaner.sh "$HOME/.config/mozilla/firefox/$profile"
+            cp -v -f "$prefsCleaner" "$HOME/.config/mozilla/firefox/$profile/prefsCleaner.sh"
             chmod +x "$HOME/.config/mozilla/firefox/$profile/prefsCleaner.sh"
             echo >&2 "${0##*/}: firefox: installed prefsCleaner.sh for $profile"
         done < <(sed -n 's/^Path=//p' "$HOME/.config/mozilla/firefox/profiles.ini")
