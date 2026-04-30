@@ -436,6 +436,28 @@ apt_wget() {
 
 apt_wget "${PACKAGES_DOWNLOAD[@]}"
 
+# Extrepo packages {{{1
+# ---------------------
+
+# Install extrepo and enable all sources.
+apt install extrepo
+sed -i 's/^# *-/-/' /etc/extrepo/config.yaml
+
+extrepo enable mozilla
+extrepo enable signal
+extrepo enable google_chrome
+extrepo enable github-cli
+
+EXTREPO_PACKAGES=(
+    firefox
+    gh
+    google-chrome-stable
+    signal-desktop
+)
+
+apt update
+apt install "${EXTREPO_PACKAGES[@]}"
+
 # Systemd optimization {{{1
 # -------------------------
 
