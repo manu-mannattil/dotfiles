@@ -365,13 +365,11 @@ iabbrev <buffer> yrea year
 iabbrev <buffer> ytou you
 iabbrev <buffer> yuo you
 iabbrev <buffer> yuor your
+
 iabbrev <buffer> lamba lambda
 
 " Accents {{{1
 " ------------
-
-iabbrev <buffer> Lopital L'Hospital
-iabbrev <buffer> LHospital L'Hospital
 
 if &ft == "tex"
   iabbrev <buffer> Ampere Amp\`{e}re
@@ -382,12 +380,13 @@ if &ft == "tex"
   iabbrev <buffer> Godel G\"{o}del
   iabbrev <buffer> Kieslowski Kie\'{s}lowski
   iabbrev <buffer> Lame Lam\'{e}
+  iabbrev <buffer> Larche Larch\'{e}
+  iabbrev <buffer> Lopital l'H\<C-V>^{o}pital
   iabbrev <buffer> Mobius M\"{o}bius
   iabbrev <buffer> Poincare Poincar\'{e}
   iabbrev <buffer> Polya P\'{o}lya
   iabbrev <buffer> Schrodinger Schr\"{o}dinger
   iabbrev <buffer> Sierpinski Sierpi\'{n}ski
-  iabbrev <buffer> Larche Larch\'{e}
 else
   iabbrev <buffer> Ampere Ampère
   iabbrev <buffer> Amperian Ampèrian
@@ -397,12 +396,13 @@ else
   iabbrev <buffer> Godel Gödel
   iabbrev <buffer> Kieslowski Kieślowski
   iabbrev <buffer> Lame Lamé
+  iabbrev <buffer> Larche Larché
+  iabbrev <buffer> Lopital l'Hôpital
   iabbrev <buffer> Mobius Möbius
   iabbrev <buffer> Poincare Poincaré
   iabbrev <buffer> Polya Pólya
   iabbrev <buffer> Schrodinger Schrödinger
   iabbrev <buffer> Sierpinski Sierpiński
-  iabbrev <buffer> Larche Larché
 endif
 
 " vim: ft=vim fdm=marker et sts=2 sw=2

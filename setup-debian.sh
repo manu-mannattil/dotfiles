@@ -15,14 +15,12 @@
 #   Geekbench             https://www.geekbench.com/download/linux
 #   git-latexdiff         https://gitlab.com/git-latexdiff/git-latexdiff
 #   pdfsizeopt            https://github.com/pts/pdfsizeopt
-#   Signal                https://signal.org/download/
 #
 # The following programs usually have outdated versions in the Debian
 # repositories, therefore it makes sense to install them manually:
 #
 #   Calibre               http://calibre-ebook.com/download_linux
 #   Latexmk               https://www.cantab.net/users/johncollins/latexmk/versions.html
-#   mktorrent             https://github.com/pobrn/mktorrent/archive/master.zip
 #
 
 set -eu
@@ -385,20 +383,6 @@ case "$HOSTNAME" in
     )
 esac
 
-# Packages to be downloaded and installed {{{2
-# --------------------------------------------
-
-PACKAGES_DOWNLOAD=(
-  'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb' # Google Chrome
-  'https://download.xnview.com/XnViewMP-linux-x64.deb' # XnView image viewer
-  'https://zoom.us/client/latest/zoom_amd64.deb' # Zoom
-)
-
-# Ferdium - client for WhatsApp, Discord, etc.
-PACKAGES_DOWNLOAD+=( "$(fetch_github_release 'ferdium/ferdium-app' 'amd64' 'deb$')" )
-# rclone -- "rsync for cloud storage" - Google Drive, S3, Dropbox, etc
-PACKAGES_DOWNLOAD+=( "$(fetch_github_release 'rclone/rclone' 'linux' 'amd64' 'deb$')" )
-
 # Installation {{{1
 # -----------------
 
@@ -418,6 +402,16 @@ apt purge --yes "${PACKAGES_TO_REMOVE[@]}"
 
 # Packages to be downloaded and installed {{{2
 # --------------------------------------------
+
+PACKAGES_DOWNLOAD=(
+  'https://download.xnview.com/XnViewMP-linux-x64.deb' # XnView image viewer
+  'https://zoom.us/client/latest/zoom_amd64.deb' # Zoom
+)
+
+# Ferdium - client for WhatsApp, Discord, etc.
+PACKAGES_DOWNLOAD+=( "$(fetch_github_release 'ferdium/ferdium-app' 'amd64' 'deb$')" )
+# rclone -- "rsync for cloud storage" - Google Drive, S3, Dropbox, etc
+PACKAGES_DOWNLOAD+=( "$(fetch_github_release 'rclone/rclone' 'linux' 'amd64' 'deb$')" )
 
 apt_wget() {
   for url

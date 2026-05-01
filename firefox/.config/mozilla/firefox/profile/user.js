@@ -134,6 +134,7 @@ user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("captivedetect.canonicalURL", "");
 user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
+user_pref("datareporting.usage.uploadEnabled", false);
 user_pref("default-browser-agent.enabled", false);
 user_pref("network.captive-portal-service.enabled", false);
 user_pref("network.connectivity-service.enabled", false);
@@ -199,7 +200,7 @@ user_pref("network.trr.bootstrapAddress", "9.9.9.9");
 
 // DNS over HTTPS (DoH) with Quad9's DNS.
 // Alternative DoH servers: https://github.com/curl/curl/wiki/DNS-over-HTTPS
-user_pref("network.trr.uri", "https://family.cloudflare-dns.com/dns-query")
+user_pref("network.trr.uri", "https://dns.quad9.net/dns-query");
 
 // Enable encrypted server name indication (SNI), which conceals the
 // hostname during TLS connections: https://www.cloudflare.com/ssl/encrypted-sni/
@@ -371,6 +372,14 @@ user_pref("pdfjs.annotationEditorMode", 1);
 user_pref("pdfjs.enableComment", false);
 user_pref("pdfjs.enableHighlightFloatingButton", false);
 user_pref("pdfjs.enableSignatureEditor", false);
+user_pref("pdfjs.enableScripting", false);
+
+// Disable splitting tabs.
+user_pref("browser.tabs.splitView.enabled", false);
+
+// When downloading files through the Download Manager under Windows,
+// Mozilla will add the downloaded file to the "Recent Documents" folder.
+user_pref("browser.download.manager.addToRecentDocs", false);
 
 // Internal custom pref to ensure that we've reach the end without syntax errors.
 user_pref("_user.js.parrot", "SUCCESS: Firefox is not dead, he's, he's restin'!");
