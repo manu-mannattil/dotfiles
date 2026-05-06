@@ -1,9 +1,9 @@
-#!/usr/bin/env bas
+#!/usr/bin/env bash
 # vim: ft=sh fdm=marker et sts=2 sw=2
 #
 # setup-debian.sh -- Debian post-installation script
 #
-# Usage: setup-debian.sh
+# Usage: setup-debian.sh --all | --apt | --nonapt | --optimize
 #
 # This is a post-installation script to install some packages and setup
 # the system the way I want it after a fresh Debian install from the
@@ -386,32 +386,24 @@ esac
 # Installation {{{1
 # -----------------
 
-# Without this some third-party packages (e.g., HDFView) produces a
-# "xdg-desktop-menu: No writable system menu directory found" error.
-# https://askubuntu.com/a/406015
-mkdir -p /usr/share/desktop-directories
+__apt() {
+  # Without this some third-party packages (e.g., HDFView) produces a
+  # "xdg-desktop-menu: No writable system menu directory found" error.
+  # https://askubuntu.com/a/406015
+  mkdir -p /usr/share/desktop-directories
 
-dpkg --add-architecture i386
-apt update
-apt upgrade --yes
-apt install --yes "${PACKAGES[@]}"
-apt install --yes --no-install-recommends "${PACKAGES_NO_RECOMMENDS[@]}"
-apt autoremove --yes
-apt clean --yes
-apt purge --yes "${PACKAGES_TO_REMOVE[@]}"
+  dpkg --add-architecture i386
+  apt update
+  apt upgrade --yes
+  apt install --yes "${PACKAGES[@]}"
+  apt install --yes --no-install-recommends "${PACKAGES_NO_RECOMMENDS[@]}"
+  apt autoremove --yes
+  apt clean --yes
+  apt purge --yes "${PACKAGES_TO_REMOVE[@]}"
+}
 
 # Packages to be downloaded and installed {{{2
 # --------------------------------------------
-
-PACKAGES_DOWNLOAD=(
-  'https://download.xnview.com/XnViewMP-linux-x64.deb' # XnView image viewer
-  'https://zoom.us/client/latest/zoom_amd64.deb' # Zoom
-)
-
-# Ferdium - client for WhatsApp, Discord, etc.
-PACKAGES_DOWNLOAD+=( "$(fetch_github_release 'ferdium/ferdium-app' 'amd64' 'deb$')" )
-# rclone -- "rsync for cloud storage" - Google Drive, S3, Dropbox, etc
-PACKAGES_DOWNLOAD+=( "$(fetch_github_release 'rclone/rclone' 'linux' 'amd64' 'deb$')" )
 
 apt_wget() {
   for url
@@ -428,29 +420,45 @@ apt_wget() {
   done
 }
 
-apt_wget "${PACKAGES_DOWNLOAD[@]}"
+__nonapt() {
+  PACKAGES_DOWNLOAD=(
+    'https://download.xnview.com/XnViewMP-linux-x64.deb' # XnView image viewer
+    'https://zoom.us/client/latest/zoom_amd64.deb' # Zoom
+  )
+
+  # Ferdium - client for WhatsApp, Discord, etc.
+  PACKAGES_DOWNLOAD+=( "$(fetch_github_release 'ferdium/ferdium-app' 'amd64' 'deb$')" )
+  # rclone -- "rsync for cloud storage" - Google Drive, S3, Dropbox, etc
+  PACKAGES_DOWNLOAD+=( "$(fetch_github_release 'rclone/rclone' 'linux' 'amd64' 'deb$')" )
+  # obsidian -- notes organizer
+  PACKAGES_DOWNLOAD+=( "$(fetch_github_release 'obsidianmd/obsidian-releases' 'amd64' 'deb$')" )
+
+  apt_wget "${PACKAGES_DOWNLOAD[@]}"
+}
 
 # Extrepo packages {{{1
 # ---------------------
 
-# Install extrepo and enable all sources.
-apt install extrepo
-sed -i 's/^# *-/-/' /etc/extrepo/config.yaml
+__extrepo() {
+  # Install extrepo and enable all sources.
+  apt install extrepo
+  sed -i 's/^# *-/-/' /etc/extrepo/config.yaml
 
-extrepo enable mozilla
-extrepo enable signal
-extrepo enable google_chrome
-extrepo enable github-cli
+  extrepo enable mozilla
+  extrepo enable signal
+  extrepo enable google_chrome
+  extrepo enable github-cli
 
-EXTREPO_PACKAGES=(
+  EXTREPO_PACKAGES=(
     firefox
     gh
     google-chrome-stable
     signal-desktop
-)
+  )
 
-apt update
-apt install "${EXTREPO_PACKAGES[@]}"
+  apt update
+  apt install "${EXTREPO_PACKAGES[@]}"
+}
 
 # Systemd optimization {{{1
 # -------------------------
@@ -490,23 +498,38 @@ MASK_UNITS=(
   bolt.service
 )
 
-set +eu
+__optimize() {
+  set +eu
 
-# Now, disable the systemd units that we don't want to run at start up.
-# However, use `disable' instead of `mask' since the services ought to
-# be started if they are required.
-for unit in "${DISABLE_UNITS[@]}"
-do
-  systemctl stop "$unit"
-  systemctl disable "$unit"
-done
+  # Now, disable the systemd units that we don't want to run at start up.
+  # However, use `disable' instead of `mask' since the services ought to
+  # be started if they are required.
+  for unit in "${DISABLE_UNITS[@]}"
+  do
+    systemctl stop "$unit"
+    systemctl disable "$unit"
+  done
 
-# Now, mask the systemd units that we will never user at any point ever.
-for unit in "${MASK_UNITS[@]}"
-do
-  systemctl stop "$unit"
-  systemctl mask "$unit"
-done
+  # Now, mask the systemd units that we will never user at any point ever.
+  for unit in "${MASK_UNITS[@]}"
+  do
+    systemctl stop "$unit"
+    systemctl mask "$unit"
+  done
+}
+
+case "${1:-}" in
+  --all)      __apt
+              __extrepo
+              __nonapt
+              __optimize ;;
+  --apt)      __apt ;;
+  --nonapt)   __nonapt ;;
+  --optimize) __optimize ;;
+  -*|"")
+    echo >&2 "${0##*/} --all | --apt | --nonapt | --optimize"
+    exit 1
+esac
 
 popd
 echo >&2 "finished post-install script"
