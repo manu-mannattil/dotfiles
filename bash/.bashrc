@@ -137,7 +137,6 @@ alias grep='grep --color=auto'
 alias info='info --vi-keys'
 alias mkdir='mkdir -pv'
 alias mv='mv -iv'
-alias rgrep='rgrep --color=auto'
 alias rm='rm -dvI --one-file-system'
 alias rsync='rsync --human-readable --info=progress2 --itemize-changes --partial --progress --protect-args --verbose --stats'
 alias tree='tree -C'
@@ -173,9 +172,6 @@ alias ffmpeg='ffmpeg -hide_banner'
 
 # Rewrap to 72 columns.
 alias fmt='fmt -w 72'
-
-# fzf hacks.
-alias fzopen='open $(fzf)'
 
 # Force dd to show progress.
 alias dd='dd status=progress'
@@ -260,6 +256,31 @@ alias wdiff='wdiff --start-delete="$COLOR_BRIGHT_RED" --end-delete="$COLOR_RESET
 # Online tools.
 alias myip='curl -qsL http://icanhazip.com'
 alias weather='curl -q http://wttr.in/?m'
+
+# fzf configuration {{2
+# ---------------------
+
+# - Rounded borders, matching results first.
+# - Cyclic scroll
+# - Dark colors, with highlighted substrings in yellow.
+export FZF_DEFAULT_OPTS="--height 60%                                           \
+    --border rounded                                                            \
+    --layout reverse                                                            \
+    --cycle                                                                     \
+    --color=dark,hl:220,hl+:220"
+
+# This is the command that's run when fzf is invoked without any arguments.
+# By default, fzf uses find(1).
+export FZF_DEFAULT_COMMAND="rg --files                                          \
+    --follow                                                                    \
+    --no-messages                                                               \
+    --ignore-file ~/.cvsignore                                                  \
+    --glob '!.git/' --glob '!.hg/'"
+
+# Options for interactive use.
+export FZF_INTERACTIVE_OPTS="--tmux 70%                                         \
+    --bind 'enter:execute:nohup xdg-open {1} >/dev/null 2>&1 &'"
+alias fzf="fzf $FZF_INTERACTIVE_OPTS"
 
 # less configuration {{{1
 # -----------------------

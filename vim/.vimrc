@@ -9,6 +9,9 @@ filetype plugin indent on
 " Switch on syntax highlighting.
 syntax enable
 
+" Barebones fzf plugin.
+set runtimepath+=/usr/share/doc/fzf/examples/
+
 if !has('packages')
   " Use pathogen to load plugins if I'm using an old version Vim.
   execute pathogen#infect('pack/bundle/start/{}')
@@ -107,7 +110,7 @@ set statusline+=%=%<[0x%B]\ L:%l/%L,C:%c\ (%P)
 " completion.  To ignore directories, append a '/' to the pattern.
 " NOTE: A downside is that insert mode file name completions using
 " CTRL-X_CTRL-F will also get affected (see :WildToggle).
-set wildignore+=*~,*.7z,*.aac,*.anx,*.asf,*.au,*.avi,*.axa,*.axv,*.bin,*.bmp,*.bz,*.bz2,*.cgm,*.class,*.com,*.deb,*.djvu,.directory,*.dl,*.dll,*.dmg,*.doc,*.docx,*.dot,*.dotx,.DS_Store,*.dvi,ehthumbs.db,*.emf,*.eps,*.exe,*.fla,*.flac,*.flc,*.fli,*.flv,.fuse_hidden*,*.gif,.git/,*.gl,*.gnumeric,*.gz,.hg/,*.ipynb,*.iso,*.jar,*.jpeg,*.jpg,latex.out/,*.m2v,*.m4a,*.m4v,*/__MACOSX/*,*.maff,*.mid,*.midi,*.mka,*.mkv,*.mng,*.mov,*.mp3,*.mp4,*.mp4v,*.mpa,*.mpc,*.mpeg,*.mpg,*.nb,*.nuv,*.o,*.odt,*.oga,*.ogg,*.ogm,*.ogv,*.ogx,*.pcx,*.pdf,*.pdf_tex,*.png,*.pps,*.ppsx,*.ppt,*.pptx,*.ps,*.psd,*.pyc,*.qt,*.ra,*.rar,*.rm,*.rmvb,*.rpm,*.rtf,*.so,.Spotlight-V100,*.spx,*.sql,*.sqlite,*.svg,*.svgz,*.swf,tags,*.tar,*.tar.gz,*.tga,*.tgz,Thumbs.db,*.tif,*.tiff,*.torrent,.Trash-*/,.Trashes,*.vob,*.wav,*.webm,*.wmv,*.xbm,*.xcf,*.xls,*.xlsx,*.xpm,*.xspf,*.xwd,*.yuv,*.zip,*/__pycache__/*
+set wildignore+=*~,*.7z,*.aac,*.anx,*.asf,*.au,*.avi,*.axa,*.axv,*.bin,*.bmp,*.bz,*.bz2,*.cgm,*.class,*.com,*.deb,*.djvu,.directory,*.dl,*.dll,*.dmg,*.doc,*.docx,*.dot,*.dotx,.DS_Store,*.dvi,ehthumbs.db,*.emf,*.eps,*.exe,*.fla,*.flac,*.flc,*.fli,*.flv,.fuse_hidden*,*.gif,.git/,*.gl,*.gnumeric,*.gz,.hg/,*.ipynb,*.iso,*.jar,*.jpeg,*.jpg,.latex/,latex.out/,*.m2v,*.m4a,*.m4v,*/__MACOSX/*,*.maff,*.mid,*.midi,*.mka,*.mkv,*.mng,*.mov,*.mp3,*.mp4,*.mp4v,*.mpa,*.mpc,*.mpeg,*.mpg,*.nb,*.nuv,*.o,*.odt,*.oga,*.ogg,*.ogm,*.ogv,*.ogx,*.pcx,*.pdf,*.pdf_tex,*.png,*.pps,*.ppsx,*.ppt,*.pptx,*.ps,*.psd,*.pyc,*.qt,*.ra,*.rar,*.rm,*.rmvb,*.rpm,*.rtf,*.so,.Spotlight-V100,*.spx,*.sql,*.sqlite,*.svg,*.svgz,*.swf,tags,*.tar,*.tar.gz,*.tga,*.tgz,Thumbs.db,*.tif,*.tiff,*.torrent,.Trash-*/,.Trashes,*.vob,*.wav,*.webm,*.wmv,*.xbm,*.xcf,*.xls,*.xlsx,*.xpm,*.xspf,*.xwd,*.yuv,*.zip,*/__pycache__/*
 
 " Ignore case while completing file names and directories.
 set wildignorecase
@@ -578,48 +581,12 @@ noremap ,d g;
 " Change to the `alternate' file using backspace.
 nnoremap <BS> <C-^>
 
-" Fix broken 'gx' in netrw.
-" https://github.com/felipec/vim-sanegx
-function! GXBrowse(url)
-  let redir = '>&/dev/null'
-  if exists('g:netrw_browsex_viewer')
-    let viewer = g:netrw_browsex_viewer
-  elseif has('unix') && executable('xdg-open')
-    let viewer = 'xdg-open'
-  elseif has('macunix') && executable('open')
-    let viewer = 'open'
-  elseif has('win64') || has('win32')
-    let viewer = 'start'
-    redir = '>null'
-  else
-    return
-  endif
+" Insert the parent directory of the current file when typing %% in
+" command mode.
+cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
 
-  execute 'silent! !' . viewer . ' ' . shellescape(a:url, 1) . redir
-  redraw!
-endfunction
-nnoremap <silent> gx :call GXBrowse(expand('<cWORD>'))<CR>
-
-" File and buffer navigation tricks {{{2
-" --------------------------------------
-
-" Find files under the current directory recursively.
-" (Equivalent to ,E and ,vE if 'autochdir' is set.)
-nnoremap ,e :edit <C-R>=expand('%:p:h').'/**/*'<CR>
-nnoremap ,pe :split <C-R>=expand('%:p:h').'/**/*'<CR>
-nnoremap ,ve :vsplit <C-R>=expand('%:p:h').'/**/*'<CR>
-
-" Find files under the directory of the current file recursively.
-nnoremap ,E :edit **/*
-nnoremap ,pE :split **/*
-nnoremap ,vE :vsplit **/*
-
-nnoremap ,b :buffer *
-nnoremap ,pb :sbuffer *
-nnoremap ,vb :vertical sbuffer *
-nnoremap ,B :ls<CR>:buffer<Space>
-nnoremap ,pB :ls<CR>:sbuffer<Space>
-nnoremap ,vB :ls<CR>:vertical sbuffer<Space>
+" Buffer navigation tricks {{{2
+" -----------------------------
 
 augroup leftright
   autocmd!
@@ -643,6 +610,46 @@ augroup END
 
 " Disable syntax error checking in POSIX sh, bash, etc.
 let g:sh_no_error = 1
+
+" fzf.vim {{{2
+" ------------
+
+" Uze fzf.vim commands if available.
+if executable('fzf') && !empty(globpath(&rtp, 'plugin/fzf.vim'))
+  " Find files under the current directory recursively.
+  " (Equivalent to ,E if 'autochdir' is set.)
+  nnoremap ,e :Files <C-R>=expand('%:p:h')<CR><CR>
+  " Find files under the directory of the current file recursively.
+  nnoremap ,E :Files<CR>
+  " Find buffers.
+  nnoremap ,b :Buffers<CR>
+  " Look at history (past).
+  nnoremap ,p :History<CR>
+else
+  " Find files under the current directory recursively.
+  " (Equivalent to ,E and ,vE if 'autochdir' is set.)
+  nnoremap ,e :edit <C-R>=expand('%:p:h').'/**/*'<CR>
+  " Find files under the directory of the current file recursively.
+  nnoremap ,E :edit **/*
+  " List all the buffers and then split.
+  nnoremap ,b :ls<CR>:buffer<Space>
+  " Look at history (past).
+  nnoremap ,p :browse oldfiles<CR>
+endif
+
+" Build a ripgrep command to obey wildignore patterns.
+function! FzfDefaultCommand() abort
+  let cmd = ['rg', '--follow', '--files']
+
+  for pattern in split(&wildignore, ',')
+    let cleaned = substitute(pattern, '^\*/', '', '')
+    call extend(cmd, ['--glob', shellescape('!' . cleaned)])
+  endfor
+
+  return join(cmd, ' ')
+endfunction
+
+let $FZF_DEFAULT_COMMAND = FzfDefaultCommand()
 
 " gnupg.vim {{{2
 " --------------

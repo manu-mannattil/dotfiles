@@ -7,8 +7,6 @@
 #
 
 # LaTeX temporary files.
-.latexrun.db
-.latexrun.db.lock
 *.aux
 *.bbl
 *.bcf
@@ -16,13 +14,17 @@
 *.fdb_latexmk
 *.fls
 *.log
-*Notes.bib
 *.out
 *.run.xml
 *.spl
 *.synctex.gz
 *.synctex.gz(busy)
 *.toc
+*Notes.bib
+.latexrun.db
+.latexrun.db.lock
+latex.out
+.latex
 
 # Vim/Ctags
 tags
@@ -32,6 +34,8 @@ TAGS
 # Python
 *.pyc
 .eggs
+__pycache__
+*.egg-info
 
 # C
 a.out
@@ -47,3 +51,14 @@ a.out
 
 # Libreoffice
 .~lock.*
+
+# Garbage.
+.DocumentRevisions-V100
+.DS_Store
+ehthumbs.db
+.Spotlight-V100
+.TemporaryItems
+Thumbs.db
+.Trashes
+__MACOSX
+Trash-*

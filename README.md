@@ -7,16 +7,16 @@
 > -- Robert M. Pirsig, *Zen and the Art of Motorcycle Maintenance*
 
 This is a repository for managing my configuration files (aka dotfiles)
-and other ephemera from $HOME: ~/.vimrc, ~/.muttrc, ~/.bashrc,
-Firefox's user.js, wrapper scripts, etc.  These files have been
-meticulously yak shaved since 2010 or so and this repository contains
-about <!--FILES-->223 configuration files for about <!--PROGRAMS-->60
-programs.  There are [many like it][others], but this one is mine.
+and other ephemera from $HOME: ~/.vimrc, ~/.muttrc, ~/.bashrc, Firefox's
+user.js, wrapper scripts, etc.  There are [many like it][others], but
+this one is mine.
 
-I get almost all the software I use from the Debian repositories.  For
-that reason, most of the configuration files in this repository are
-meant to be used with the software versions available in [Debian
-stable][debian].
+The files in this repository have been meticulously yak shaved since
+2010 or so and it contains about <!--FILES-->223 configuration files for
+about <!--PROGRAMS-->60 programs.  These days, I get almost all the
+software I use from Debian.  For that reason, most of the configuration
+files in this repository are meant to be used with the software versions
+available in the latest [Debian stable][debian].
 
 ## Setup
 
