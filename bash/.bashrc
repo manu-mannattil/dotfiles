@@ -42,10 +42,6 @@ shopt -s extglob
 # now only match uppercase characters.
 shopt -s globasciiranges
 
-# Match all files and zero or more directories and subdirectories when the
-# pattern ** is uses in a pathname expansion context.
-shopt -s globstar
-
 # Append the history list to the file named by the value of the HISTFILE
 # variable when the shell exits instead than overwriting the file.
 shopt -s histappend
@@ -257,92 +253,16 @@ alias wdiff='wdiff --start-delete="$COLOR_BRIGHT_RED" --end-delete="$COLOR_RESET
 alias myip='curl -qsL http://icanhazip.com'
 alias weather='curl -q http://wttr.in/?m'
 
-# fzf configuration {{2
-# ---------------------
-
-# - Rounded borders, matching results first.
-# - Cyclic scroll
-# - Dark colors, with highlighted substrings in yellow.
-export FZF_DEFAULT_OPTS="--height 60%                                           \
-    --border rounded                                                            \
-    --layout reverse                                                            \
-    --cycle                                                                     \
-    --color=dark,hl:220,hl+:220"
-
-# This is the command that's run when fzf is invoked without any arguments.
-# By default, fzf uses find(1).
-export FZF_DEFAULT_COMMAND="rg --files                                          \
-    --follow                                                                    \
-    --no-messages                                                               \
-    --ignore-file ~/.cvsignore                                                  \
-    --glob '!.git/' --glob '!.hg/'"
-
-# Options for interactive use.
-export FZF_INTERACTIVE_OPTS="--tmux 70%                                         \
-    --bind 'enter:execute:nohup xdg-open {1} >/dev/null 2>&1 &'"
-alias fzf="fzf $FZF_INTERACTIVE_OPTS"
-
-# less configuration {{{1
-# -----------------------
-
-# Options for less.  See less(1) for more.
-export LESS="-cfiJMR -j .5"
-export LESSHISTFILE="$HOME/.cache/lesshst"
-export LESSHISTSIZE="5000"
-
-# Enhance less using lesspipe.
-if command -v lesspipe &>/dev/null
-then
-    eval $(lesspipe)
-fi
-
-# Colored man pages!
-export LESS_TERMCAP_mb=$'\E[5m'                 # begin blinking
-export LESS_TERMCAP_md=$'\E[1;38;5;12m'         # begin bold
-export LESS_TERMCAP_me=$'\E[0m'                 # end bold
-export LESS_TERMCAP_so=$'\E[38;5;0m\E[48;5;11m' # begin highlight
-export LESS_TERMCAP_se=$'\E[0m'                 # end highlight
-export LESS_TERMCAP_us=$'\E[4;38;5;13m'         # begin underline
-export LESS_TERMCAP_ue=$'\E[0m'                 # end underline
-
-# Newer groff needs to be told explicitly to respect the
-# LESS_TERMCAP_xx variables.
-# https://unix.stackexchange.com/a/108840
-export GROFF_NO_SGR=1
-
-# fasd {{{1
-# ---------
-
-if command -v fasd &>/dev/null
-then
-    eval "$(fasd --init auto)"
-
-    # Get rid of default fasd aliases.
-    unalias a d f s sd sf z zz
-
-    alias d='fasd_cd -d'
-    alias di='fasd_cd -d -i'
-    alias o='fasd -e open'
-    alias v='fasd -f -e vim'
-    alias ee='fasd -f -e e'
-fi
-
 # Bash completion {{{1
 # --------------------
 
-# Setup Bash completion.
-if [[ -f /usr/share/bash-completion/bash_completion ]]
-then
-    source /usr/share/bash-completion/bash_completion
-elif [[ -f /etc/bash_completion ]]
-then
-    source /etc/bash_completion
-fi
+# This function does what it's name says it does.
+source_if_exists() {
+    [[ -f "$1" ]] && source "$1"
+}
 
-# Prevent Bash completion from using /etc/hosts entries as SSH
-# hostnames.  See /usr/share/bash-completion/bash_completion
-export COMP_KNOWN_HOSTS_WITH_HOSTFILE=
-export BASH_COMPLETION_KNOWN_HOSTS_WITH_HOSTFILE=
+source_if_exists /usr/share/bash-completion/bash_completion ||
+    source_if_exists /etc/bash_completion
 
 # Functions {{{1
 # --------------
@@ -634,8 +554,82 @@ _vim() {
     esac
 } && complete -F _vim e vi vim gvim nvim
 
-# Exports {{{1
-# ------------
+# Configuration: fzf {{{1
+# -----------------------
+
+# - Rounded borders, matching results first.
+# - Cyclic scroll
+# - Dark colors, with highlighted substrings in yellow.
+export FZF_DEFAULT_OPTS="--height 60%                                           \
+    --border rounded                                                            \
+    --layout reverse                                                            \
+    --cycle                                                                     \
+    --color=dark,hl:220,hl+:220"
+
+# This is the command that's run when fzf is invoked without any arguments.
+# By default, fzf uses find(1).
+export FZF_DEFAULT_COMMAND="rg --files                                          \
+    --follow                                                                    \
+    --no-messages                                                               \
+    --ignore-file ~/.cvsignore                                                  \
+    --glob '!.git/' --glob '!.hg/'"
+
+# Options for interactive use.
+export FZF_INTERACTIVE_OPTS="--tmux 70%"
+alias fzf="fzf $FZF_INTERACTIVE_OPTS"
+
+# When fzf is obtained from the Debian repositories, the completion and
+# key-binding helpers are in /usr/share/doc.
+source_if_exists /usr/share/doc/fzf/examples/completion.bash
+source_if_exists /usr/share/doc/fzf/examples/key-bindings.bash
+
+# Configuration: less {{{1
+# ------------------------
+
+# Options for less.  See less(1) for more.
+export LESS="-cfiJMR -j .5"
+export LESSHISTFILE="$HOME/.cache/lesshst"
+export LESSHISTSIZE="5000"
+
+# Enhance less using lesspipe.
+if command -v lesspipe &>/dev/null
+then
+    eval $(lesspipe)
+fi
+
+# Colored man pages!
+export LESS_TERMCAP_mb=$'\E[5m'                 # begin blinking
+export LESS_TERMCAP_md=$'\E[1;38;5;12m'         # begin bold
+export LESS_TERMCAP_me=$'\E[0m'                 # end bold
+export LESS_TERMCAP_so=$'\E[38;5;0m\E[48;5;11m' # begin highlight
+export LESS_TERMCAP_se=$'\E[0m'                 # end highlight
+export LESS_TERMCAP_us=$'\E[4;38;5;13m'         # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'                 # end underline
+
+# Newer groff needs to be told explicitly to respect the
+# LESS_TERMCAP_xx variables.
+# https://unix.stackexchange.com/a/108840
+export GROFF_NO_SGR=1
+
+# Configuration: fasd {{{1
+# ------------------------
+
+if command -v fasd &>/dev/null
+then
+    eval "$(fasd --init auto)"
+
+    # Get rid of default fasd aliases.
+    unalias a d f s sd sf z zz
+
+    alias d='fasd_cd -d'
+    alias di='fasd_cd -d -i'
+    alias o='fasd -e open'
+    alias v='fasd -f -e vim'
+    alias ee='fasd -f -e e'
+fi
+
+# Environment {{{1
+# ----------------
 
 # Recognize emulators that support 256 colors, but don't set $TERM properly.
 if [[ "$TERM" = "xterm" ]]
@@ -704,11 +698,13 @@ export XDG_CURRENT_DESKTOP="X-Generic"
 export NODE_DISABLE_COLORS=1
 export NODE_NO_READLINE=1
 
-# Sourced files {{{1
-# ------------------
+# Bash completion {{{2
+# --------------------
 
-# Source local .bashrc if any.
-[[ -f "$HOME/.bashrc_local" ]] && source "$HOME/.bashrc_local"
+# Prevent Bash completion from using /etc/hosts entries as SSH
+# hostnames.  See /usr/share/bash-completion/bash_completion
+export COMP_KNOWN_HOSTS_WITH_HOSTFILE=
+export BASH_COMPLETION_KNOWN_HOSTS_WITH_HOSTFILE=
 
 # Bash prompt {{{1
 # ----------------
@@ -765,3 +761,6 @@ __bash_prompt() {
          \n${PS1_BRIGHT_WHITE}\$${PS1_RESET} "
 }
 PROMPT_COMMAND="${PROMPT_COMMAND}; __bash_prompt"
+
+# Source local .bashrc if any.
+source_if_exists "$HOME/.bashrc_local"
