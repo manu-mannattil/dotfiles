@@ -122,7 +122,6 @@ PACKAGES=(
   colordiff # tool to colorize 'diff' output
   diffutils # File comparison utilities
   exuberant-ctags # build tag file indexes of source code definitions
-  fzf # fuzzy file finder
   gcc-doc # documentation for gcc, g++, gobjc, etc.
   gfortran # GNU Fortran compiler -- required for building Armadillo
   indent # C language source code formatting program
@@ -131,8 +130,6 @@ PACKAGES=(
   libtool # GNU tool to simplify the creation and management of portable compiled libraries
   manpages-posix # Manual pages about using POSIX system
   patch # Apply a diff file to an original
-  ripgrep # Recursively searches directories for a regex pattern
-  silversearcher-ag # very fast grep-like program, alternative to ack-grep
   sloccount # programs for counting physical source lines of code (SLOC)
   xxd # make a hexdump of a given file
 
@@ -324,17 +321,19 @@ PACKAGES=(
 
   # Utilities (assorted)
   dateutils # nifty command line date and time utilities
-  fasd # jump to directories and files quickly
+  fzf # fuzzy file finder
   libfribidi-bin # convert strings in right-to-left languages like Arabic and Hebrew
   libtext-lorem-perl # random faux Latin text generator
   ncal # CLI calender program
   parallel # build and execute command lines from standard input in parallel
   pv # Shell pipeline element to meter data passing through
   rename # Perl extension for renaming multiple files
+  ripgrep # Recursively searches directories for a regex pattern
   rlwrap # readline feature command line wrapper
   rsync # file copying tool
   screen # terminal multiplexer with VT100/ANSI terminal emulation
   scrot # command line screen capture utility
+  silversearcher-ag # very fast grep-like program, alternative to ack-grep
   stow # Organizer for /usr/local software packages
   stress # tool to impose load on and stress test a computer system
   tmux # terminal multiplexer
@@ -343,6 +342,7 @@ PACKAGES=(
   uchardet # universal charset detection library - cli utility
   units # converts between different systems of units
   zbar-tools # QR code scanner/decoder
+  zoxide # smarter cd replacement
 
   # Miscellaneous
   wine # Windows API implementation - standard suite

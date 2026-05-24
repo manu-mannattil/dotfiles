@@ -611,22 +611,13 @@ export LESS_TERMCAP_ue=$'\E[0m'                 # end underline
 # https://unix.stackexchange.com/a/108840
 export GROFF_NO_SGR=1
 
-# Configuration: fasd {{{1
-# ------------------------
+# Configuration: zoxide {{{1
+# --------------------------
 
-if command -v fasd &>/dev/null
-then
-    eval "$(fasd --init auto)"
+# Print the matched directory before navigating to it.
+export _ZO_ECHO=1
 
-    # Get rid of default fasd aliases.
-    unalias a d f s sd sf z zz
-
-    alias d='fasd_cd -d'
-    alias di='fasd_cd -d -i'
-    alias o='fasd -e open'
-    alias v='fasd -f -e vim'
-    alias ee='fasd -f -e e'
-fi
+eval "$(zoxide init bash --cmd d)"
 
 # Environment {{{1
 # ----------------
