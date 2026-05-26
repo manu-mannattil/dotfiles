@@ -347,6 +347,9 @@ augroup ft_related
   autocmd BufRead,BufNewFile *.rkt,*.rktl set filetype=scheme
   autocmd BufRead,BufNewFile *.vcf set filetype=vcard
   autocmd BufRead,BufNewFile COPYING,INSTALL,LICENSE,README,[Rr]eadme set filetype=text
+  autocmd BufRead,BufNewFile *.soc,*.soc.gpg
+        \ set filetype=soclog |
+        \ runtime! ftplugin/text.vim
 
   " .m files are Mathematica files.  Who uses Matlab these days?
   autocmd BufRead,BufNewFile *.m,*.wl,*.wls set filetype=mma
@@ -520,7 +523,7 @@ cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'L
 " ,$ strips trailing spaces.
 function! RemoveTrailingSpaces() abort
   let winview = winsaveview()
-  %substitute/\s\+$//e
+  %substitute/[[:space:][:return:]]\+$//e
   call winrestview(winview)
 endfunction
 nnoremap <silent> ,$ :call RemoveTrailingSpaces()<CR>
