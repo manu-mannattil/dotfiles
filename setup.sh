@@ -553,9 +553,9 @@ __install_yapf() {
     install "yapf/.config/yapf"
 }
 
-# :target: youtube-dl - youtube-dl configuration
-__install_youtube-dl() {
-    install "youtube-dl/.config/youtube-dl.conf"
+# :target: yt-dlp - yt-dlp configuration
+__install_yt-dlp() {
+    install "yt-dlp/.config/yt-dlp.conf"
 }
 
 # :target: zeal - Zeal docs configuration
