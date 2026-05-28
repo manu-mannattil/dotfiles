@@ -14,9 +14,9 @@ this one is mine.
 The files in this repository have been meticulously yak shaved since
 2010 or so and it contains about <!--FILES-->224 configuration files for
 about <!--PROGRAMS-->60 programs.  These days, I get almost all the
-software I use from Debian.  For that reason, most of the configuration
-files in this repository are meant to be used with the software versions
-available in the latest [Debian stable][debian].
+software I use from Debian.  For that reason, most configuration files
+in this repository are meant to be used with the software versions
+available in the latest Debian stable.
 
 ## Setup
 
@@ -83,6 +83,5 @@ Public domain.  See the file UNLICENSE for more details.
 (Quite obviously this only applies to stuff I've written, i.e., things
 without an explicit attribution.)
 
-[debian]: https://packages.debian.org/stable
 [others]: https://github.com/search?q=dotfiles+OR+configs
 [stow]: https://www.gnu.org/software/stow/stow.html

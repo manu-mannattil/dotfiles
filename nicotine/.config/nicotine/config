@@ -6,3 +6,6 @@ shared = [('music')]
 
 [ui]
 header_bar = False
+
+[notifications]
+notification_popup_file = False

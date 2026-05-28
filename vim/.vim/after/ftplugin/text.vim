@@ -12,11 +12,9 @@ setlocal formatlistpat=^\\s*[\\[({]\\?\\([0-9]\\+\\\|[iIvVxXlLcCdDmM]\\+\\\|[a-z
 
 runtime! abbrev.vim
 
-if &ft == "text"
-  setlocal comments=
-endif
-
 setlocal keywordprg=:Sdcv
 
-" Call vim-unicoder.
-Unicoder
+if &ft == "text" || &ft == "mail"
+    setlocal comments=
+    Unicoder " call vim-unicoder
+endif

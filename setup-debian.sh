@@ -11,6 +11,7 @@
 # in the Debian repositories, some packages need to be manually
 # installed:
 #
+#   Anki                  https://github.com/ankitects/anki/releases
 #   DeaDBeeF              https://deadbeef.sourceforge.io/download.html
 #   Geekbench             https://www.geekbench.com/download/linux
 #   git-latexdiff         https://gitlab.com/git-latexdiff/git-latexdiff
@@ -130,6 +131,7 @@ PACKAGES=(
   libtool # GNU tool to simplify the creation and management of portable compiled libraries
   manpages-posix # Manual pages about using POSIX system
   patch # Apply a diff file to an original
+  pkg-config # manage compile and link flags for libraries
   sloccount # programs for counting physical source lines of code (SLOC)
   xxd # make a hexdump of a given file
 
