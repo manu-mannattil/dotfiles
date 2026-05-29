@@ -10,6 +10,7 @@ filetype plugin indent on
 syntax enable
 
 " Barebones fzf plugin.
+" Custom fzf.vim plugin settings are in ~/.vim/after/plugin/fzf.vim
 set runtimepath+=/usr/share/doc/fzf/examples/
 
 if !has('packages')
@@ -517,6 +518,9 @@ command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr RunGrep(<f-args>)
 cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
 cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
 
+" Hack to replace :rg and with :Grep.
+cnoreabbrev <expr> rg  (getcmdtype() ==# ':' && getcmdline() ==# 'rg') ? 'Grep' : 'rg'
+
 " Mappings {{{1
 " -------------
 
@@ -605,6 +609,16 @@ augroup leftright
         \ nnoremap <buffer> <right> <right>
 augroup END
 
+" Find files under the current directory recursively.
+" (Equivalent to ,E and ,vE if 'autochdir' is set.)
+nnoremap ,e :edit <C-R>=expand('%:p:h').'/**/*'<CR>
+" Find files under the directory of the current file recursively.
+nnoremap ,E :edit **/*
+" List all the buffers and then split.
+nnoremap ,b :ls<CR>:buffer<Space>
+" Look at history (past).
+nnoremap ,p :browse oldfiles<CR>
+
 " Plugin settings {{{1
 " --------------------
 
@@ -613,46 +627,6 @@ augroup END
 
 " Disable syntax error checking in POSIX sh, bash, etc.
 let g:sh_no_error = 1
-
-" fzf.vim {{{2
-" ------------
-
-" Uze fzf.vim commands if available.
-if executable('fzf') && !empty(globpath(&rtp, 'plugin/fzf.vim'))
-  " Find files under the current directory recursively.
-  " (Equivalent to ,E if 'autochdir' is set.)
-  nnoremap ,e :Files <C-R>=expand('%:p:h')<CR><CR>
-  " Find files under the directory of the current file recursively.
-  nnoremap ,E :Files<CR>
-  " Find buffers.
-  nnoremap ,b :Buffers<CR>
-  " Look at history (past).
-  nnoremap ,p :History<CR>
-else
-  " Find files under the current directory recursively.
-  " (Equivalent to ,E and ,vE if 'autochdir' is set.)
-  nnoremap ,e :edit <C-R>=expand('%:p:h').'/**/*'<CR>
-  " Find files under the directory of the current file recursively.
-  nnoremap ,E :edit **/*
-  " List all the buffers and then split.
-  nnoremap ,b :ls<CR>:buffer<Space>
-  " Look at history (past).
-  nnoremap ,p :browse oldfiles<CR>
-endif
-
-" Build a ripgrep command to obey wildignore patterns.
-function! FzfDefaultCommand() abort
-  let cmd = ['rg', '--follow', '--files']
-
-  for pattern in split(&wildignore, ',')
-    let cleaned = substitute(pattern, '^\*/', '', '')
-    call extend(cmd, ['--glob', shellescape('!' . cleaned)])
-  endfor
-
-  return join(cmd, ' ')
-endfunction
-
-let $FZF_DEFAULT_COMMAND = FzfDefaultCommand()
 
 " gnupg.vim {{{2
 " --------------
