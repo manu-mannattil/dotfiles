@@ -432,6 +432,12 @@ augroup quickfix
   autocmd QuickFixCmdPost l* lwindow
 augroup END
 
+augroup cmdwin
+  autocmd!
+  " Always start the command-line window in insert mode.
+  autocmd CmdwinEnter * startinsert
+augroup END
+
 " Commands {{{1
 " -------------
 
@@ -605,8 +611,9 @@ augroup leftright
   " The above mapping isn't useful in many filetypes, but since there's no way
   " to unmap a mapping on a per-buffer basis, we re-remap it here.
   autocmd FileType help,qf,sdcv
-        \ nnoremap <buffer> <left> <left>                                     |
-        \ nnoremap <buffer> <right> <right>
+        \ nnoremap <buffer> <left> <left>    |
+        \ nnoremap <buffer> <right> <right>  |
+        \ nnoremap <buffer> <BS> <BS>
 augroup END
 
 " Find files under the current directory recursively.

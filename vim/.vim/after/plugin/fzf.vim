@@ -3,7 +3,6 @@
 if exists('g:loaded_my_fzf') || !exists('g:loaded_fzf_vim') || !executable('fzf')
   finish
 endif
-
 let g:loaded_my_fzf = 1
 
 " Replace buffer navigation mappings from ~/.vimrc with fzf versions.
@@ -81,4 +80,5 @@ function! s:history(arg, extra, bang)
   endif
 endfunction
 
+" Overwrite fzf.vim's :History command.
 command! -bang -nargs=* History call s:history(<q-args>, fzf#vim#with_preview(), <bang>0)
