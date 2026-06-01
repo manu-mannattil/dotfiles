@@ -619,6 +619,15 @@ export _ZO_ECHO=1
 
 eval "$(zoxide init bash --cmd d)"
 
+# o [-i] <query> opens the first match using xdg-open.
+o() {
+    case "$1" in
+        -i) shift; result="$(zoxide query --interactive --exclude "$(__zoxide_pwd)" -- "$@")" ;;
+        *) result="$(zoxide query --exclude "$(__zoxide_pwd)" -- "$@")" ;;
+    esac
+    [[ "$result" ]] && ( nohup xdg-open "file://$result" &>/dev/null & ) &>/dev/null
+}
+
 # Environment {{{1
 # ----------------
 
