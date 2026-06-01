@@ -74,6 +74,12 @@ install() {
         local target="$HOME/${file#*/}"
         local tardir=$(dirname "$target")
 
+        [[ -f "$origin" ]] || {
+            info "invalid target: '$file' does not exist in the repository"
+            info "aborting"
+            exit 1
+        }
+
         # Catch potential rm -rf $HOME: if the file/directory name ends
         # in a `/', $target reduces to $HOME.
         if [[ "$(echo "$target" | sed 's|/*$||')" == "$HOME" ]]
@@ -513,7 +519,7 @@ __install_wget() {
 
 # :target: x - X11 configuration
 __install_x() {
-    install "X/.XCompose" "X/.xinitrc" "X/.Xresources"
+    install "X/.xinitrc" "X/.Xresources"
     [[ "$DISPLAY" ]] && xrdb -merge "$HOME/.Xresources"
 
     # Location info for redshift.
