@@ -13,6 +13,7 @@ BlinkingCellInsertionPoint->False,
 PrivateNotebookOptions->{"FinalWindowPrompt"->False},
 CellContext->Notebook,
 ShowPredictiveInterface->False,
+CodeAssistOptions->{"AutoConvertEnable"->False},
 NotebookAutoSave->True,
 TabSpacings->{2.},
 Magnification->0.9

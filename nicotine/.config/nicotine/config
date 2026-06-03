@@ -1,11 +1,23 @@
 [transfers]
-incompletedir = music/uncat
 downloaddir = music/uncat
-uploaddir = music/uncat
+incompletedir = music/uncat
 shared = [('music')]
+uploaddir = music/uncat
+usernamesubfolders = True
 
 [ui]
 header_bar = False
 
 [notifications]
 notification_popup_file = False
+
+[searches]
+defilter = ['', '', '', '', True, '', 'mp3 m4a', '']
+enablefilters = True
+filterbr = []
+filtercc = []
+filterin = []
+filterout = []
+filters_visible = False
+filtersize = []
+filtertype = ['mp3 m4a']

@@ -74,7 +74,7 @@ install() {
         local target="$HOME/${file#*/}"
         local tardir=$(dirname "$target")
 
-        [[ -f "$origin" ]] || {
+        [[ -e "$origin" ]] || {
             info "invalid target: '$file' does not exist in the repository"
             info "aborting"
             exit 1
