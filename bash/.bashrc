@@ -687,9 +687,6 @@ export SDCV_HISTSIZE=0
 # Local TEXMF directory.
 export TEXMFHOME="$HOME/.texmf"
 
-# Preferred terminal emulator.
-export TERMINAL="$HOME/code/scripts/terminal"
-
 # Will reduce the time it takes for xdg-open to figure out that the DE
 # is a generic one.
 export XDG_CURRENT_DESKTOP="X-Generic"

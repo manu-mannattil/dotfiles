@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Use URxvt in daemon mode as the x-terminal-emulator.
+# Debian usually links lxterm to /etc/alternatives/x-terminal-emulator
+
+urxvtc "$@"
+status="$?"
+case "$status" in
+    2) urxvtd -q -o -f
+       exec urxvtc "$@" ;;
+    *) exit "$status" ;;
+esac

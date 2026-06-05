@@ -30,7 +30,7 @@ set $ws10 "10"
 set $mod Mod4
 
 # Start a terminal.
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec x-terminal-emulator
 
 # Kill focused window.
 bindsym $mod+Shift+q kill
