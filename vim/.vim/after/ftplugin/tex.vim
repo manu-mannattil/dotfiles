@@ -143,37 +143,23 @@ nnoremap <buffer> <silent> <localleader>lb :execute "split ".vimtex#bib#files()[
 " Quick snippets using snipMate and vimtex {{{1
 " ---------------------------------------------
 
-" Trigger snipMate snippet insertion if we're in a math environment.
-" If not, just insert the text as usual.
-function! s:snipMateMathSnippet(trigger, snippet)
+" Trigger a SnipMate snippet in math mode.
+" Otherwise, insert the trigger text literally.
+function! s:snipMateMathSnippet(trigger, snippet) abort
   if vimtex#syntax#in_mathzone()
     call snipmate#expandQuickSnip(a:snippet)
     startinsert
-  else " Is there a simpler way to insert text using a function?
-    " Modify the current line to include the trigger.
-    let line = getline('.')
-    let pos = col('.') - 1
-    let line = line[:pos] . a:trigger . line[pos + 1:]
-    call setline('.', line)
-
-    " Put cursor on the next column (by simulating an append or move
-    " forward) if we are at the last character of the current line.
-    " This makes inserting text more natural and consistent with Vim's
-    " default behavior.
-    call cursor(line('.'), pos + len(a:trigger) + 1)
-    if len(line) == col('.')
-      call feedkeys('a', 'n') " simulate append
-    else
-      call feedkeys('l', 'n') " simulate move forward
-    endif
+  else
+    call feedkeys('a' . a:trigger, 'n')
   endif
 endfunction
 
-" Helper function to make math snippets.
-function! s:makeSnipMateMathSnippet(trigger, snippet)
-  silent execute 'inoremap <silent><buffer>' a:trigger
-        \ '<esc>:call <SID>snipMateMathSnippet("' . escape(a:trigger, '\') . '", "'
-        \ . escape(a:snippet, '\') . '")<cr>'
+function! s:makeSnipMateMathSnippet(trigger, snippet) abort
+  execute printf(
+        \ 'inoremap <silent><buffer> %s <Esc>:call <SID>snipMateMathSnippet(%s, %s)<CR>',
+        \ a:trigger,
+        \ string(a:trigger),
+        \ string(a:snippet))
 endfunction
 
 let b:snipmate_math_snippets = [
