@@ -9,7 +9,7 @@
 (package-initialize)
 
 ;; Show line/column numbers.
-(global-linum-mode 1)
+(global-display-line-numbers-mode 1)
 (column-number-mode 1)
 
 ;; Enhancements.

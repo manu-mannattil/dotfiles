@@ -71,16 +71,12 @@ PROGRAMS=(
   flake8
   # youtube-dl for galleries
   gallery-dl
-  # code snippet lookup tool
-  howdoi
   # make Anki decks with markdown
-  markdown-anki-decks
+  apyanki
   # stress Terminal UI stress test and monitoring tool
   s-tui
   # speedtest.net on the CLI
   speedtest-cli
-  # download tidal.com media
-  tidal-dl
   # Python code formatter
   yapf
   # youtube-dl fork with regular updates
@@ -117,9 +113,6 @@ CONDA_MODULES=(
   scipy
   scikit-learn
   opencv
-
-  # C++ linear algebra library with Python interface.
-  xtensor
 
   # Testing.
   pytest

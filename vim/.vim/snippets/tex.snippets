@@ -37,23 +37,19 @@ snippet enum
 		\item ${1}
 	\end{enumerate}
 snippet al
-	%
 	\begin{equation}\begin{aligned}
 			${1}
 	\end{aligned}\end{equation}
-	%
 snippet eq
-	%
 	\begin{equation}
 		${1}
 	\end{equation}
-	%
 snippet fig
 	${1:Figure}~\ref{${2:fig:}}${3}
 snippet figure
 	\begin{figure}
 		\begin{center}
-			\includegraphics[scale=${1:1.0}]{${2:file}}
+			\includegraphics${1:[scale=1.0]}{${2:file}}
 		\end{center}
 		\caption{${3}}
 		\label{fig:${4}}
