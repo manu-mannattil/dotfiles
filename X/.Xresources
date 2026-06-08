@@ -145,6 +145,11 @@ Xcursor.theme: Adwaita
   Xcursor.size: 24
 #endif
 
+! Matplotlib when using the TkAgg backend, picks up stuff from
+! ~/.Xresources.
+Matplotlib*background: #cecece
+Matplotlib*foreground: #000000
+
 ! Notes {{{1
 ! ----------
 

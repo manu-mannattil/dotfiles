@@ -183,7 +183,6 @@ EXEC 01;33
 .nth 00;35
 .odp 00;35
 .pbm 00;35
-.pdf 00;35
 .pgm 00;35
 .png 00;35
 .pnm 00;35
@@ -201,6 +200,18 @@ EXEC 01;33
 .wmf 00;35
 .xcf 00;35
 .xpm 00;35
+
+# Binary documents (LibreOffice, MS office, etc.)
+.docx 01;35
+.odp 01;35
+.ods 01;35
+.odt 01;35
+.pdf 01;35
+.ppt 01;35
+.pptx 01;35
+.rtf 01;35
+.xls 01;35
+.xlsx 01;35
 
 # Audio and video
 .3g2 00;31
@@ -326,11 +337,11 @@ EXEC 01;33
 *config.mk 01;37
 *Makefile 01;37
 *makefile 01;37
-.S 01;37
 .asm 01;37
 .awk 01;37
 .bash 01;37
 .bat 01;37
+.bib 01;37
 .c 01;37
 .cc 01;37
 .clisp 01;37
@@ -339,6 +350,7 @@ EXEC 01;33
 .coffee 01;37
 .cpp 01;37
 .csh 01;37
+.csv 01;37
 .el 01;37
 .erb 01;37
 .f 01;37
@@ -365,6 +377,7 @@ EXEC 01;33
 .rb 01;37
 .rkt 01;37
 .rs 01;37
+.S 01;37
 .s 01;37
 .scm 01;37
 .sed 01;37
@@ -372,5 +385,6 @@ EXEC 01;33
 .ss 01;37
 .tcl 01;37
 .tex 01;37
+.txt 01;37
 .vim 01;37
 .zsh 01;37
