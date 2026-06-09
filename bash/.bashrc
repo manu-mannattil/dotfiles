@@ -235,7 +235,9 @@ alias pdf2txt='pdftotext -layout'
 #
 #   QApplication: invalid style override 'adwaita-dark' passed, ignoring it.
 #
-alias python='QT_QPA_PLATFORMTHEME= QT_STYLE_OVERRIDE= python'
+# Also set XCURSOR_PATH.  Without that Qt seems unable to pick up the
+# right cursors.
+alias python='QT_QPA_PLATFORMTHEME= QT_STYLE_OVERRIDE= XCURSOR_PATH=/usr/share/icons python'
 
 # Overwrite 5 times, fill up with zeroes, and then delete.
 alias shred='shred -vzfun 5'

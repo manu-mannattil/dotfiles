@@ -114,6 +114,9 @@ CONDA_MODULES=(
   scikit-learn
   opencv
 
+  # Note (2026-06-09): Matplotlib segfaults if latest fontconfig is used.
+  fontconfig=2.17.1
+
   # Testing.
   pytest
 
@@ -137,13 +140,13 @@ CONDA_MODULES=(
 )
 
 install_conda_modules() {
-  mamba update -n base "mamba"
-  mamba install "${CONDA_MODULES[@]}"
+  mamba update --yes -n base "mamba"
+  mamba install --yes "${CONDA_MODULES[@]}"
 }
 
 update_conda_modules() {
-  mamba update -n base "mamba"
-  mamba update --all
+  mamba update --yes -n base "mamba"
+  mamba update --yes --all
 }
 
 # Modules in separate virtualenvs --------------------------------------
