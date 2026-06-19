@@ -77,7 +77,6 @@ PACKAGES=(
   unrar # Unarchiver for .rar files (non-free version)
   unzip # De-archiver for .zip files
   zip # Archiver for .zip files
-  engrampa # archive manager for MATE
 
   # Audio
   audacity # fast, cross-platform audio editor
@@ -104,17 +103,13 @@ PACKAGES=(
   needrestart # tells you whether a restart is required after installing packages
 
   # Desktop and window managers
-  adwaita-qt adwaita-qt6 # Adwaita light/dark theme for Qt
-  adwaita-icon-theme-legacy # old Adwaita icon theme (required for SpaceFM).
+  adwaita-qt adwaita-qt6 qt6-gtk-platformtheme # Adwaita light/dark theme for Qt
   gnome-icon-theme # GNOME Desktop icon theme
   gnome-themes-extra # Adwaita GTK+ 2 theme — engine
   i3 # metapackage (i3 window manager, screen locker, menu, statusbar)
   libnotify-bin # sends desktop notifications to a notification daemon
-  openbox # standards-compliant, fast, light-weight and extensible window manager
   rofi # window switcher, run dialog and dmenu replacement
-  pcmanfm # file manager from the LXDE project
   suckless-tools # simple commands for minimalistic window managers
-  tint2 # panel for openbox desktop
   wmctrl # control an EWMH/NetWM compatible X Window Manager
 
   # Development
@@ -278,6 +273,7 @@ PACKAGES=(
   gnuplot-qt # Command-line driven interactive plotting program. QT-package
 
   # Shells and terminal emulators
+  alacritty # GPU accelerated terminal emulator written in Rust
   ksh # Real, AT&T version of the Korn shell
   posh # Policy-compliant Ordinary SHell
   rxvt-unicode # RXVT-like terminal emulator with Unicode and 256-color support
@@ -324,8 +320,6 @@ PACKAGES=(
   # Utilities (assorted)
   dateutils # nifty command line date and time utilities
   fzf # fuzzy file finder
-  libfribidi-bin # convert strings in right-to-left languages like Arabic and Hebrew
-  libtext-lorem-perl # random faux Latin text generator
   ncal # CLI calender program
   parallel # build and execute command lines from standard input in parallel
   pv # Shell pipeline element to meter data passing through
@@ -342,7 +336,6 @@ PACKAGES=(
   tree # displays an indented directory tree, in color
   tty-clock # simple terminal clock
   uchardet # universal charset detection library - cli utility
-  units # converts between different systems of units
   zbar-tools # QR code scanner/decoder
   zoxide # smarter cd replacement
 
@@ -356,7 +349,9 @@ PACKAGES=(
 
 # Packages to be installed with --no-install-recommends.
 PACKAGES_NO_RECOMMENDS=(
+  engrampa # archive manager for MATE
   okular # KDE PDF viewer
+  pcmanfm # file manager from the LXDE project
 )
 
 PACKAGES_TO_REMOVE=(
@@ -525,7 +520,8 @@ case "${1:-}" in
               __extrepo
               __nonapt
               __optimize ;;
-  --apt)      __apt ;;
+  --apt)      __apt
+              __extrepo ;;
   --nonapt)   __nonapt ;;
   --optimize) __optimize ;;
   -*|"")

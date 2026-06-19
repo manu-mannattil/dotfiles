@@ -1,12 +1,32 @@
 #!/bin/sh
-
-# Use URxvt in daemon mode as the x-terminal-emulator.
+#
+# Usage: x-terminal-emulator <dir>
+#
+# Use Alacritty in daemon mode as the x-terminal-emulator.
 # Debian usually links lxterm to /etc/alternatives/x-terminal-emulator
+#
 
-urxvtc "$@"
-status="$?"
-case "$status" in
-    2) urxvtd -q -o -f
-       exec urxvtc "$@" ;;
-    *) exit "$status" ;;
-esac
+ALACRITTY_SOCKET="/tmp/alacritty-$USER.sock"
+export ALACRITTY_SOCKET
+
+# Try to create a new window by connecting to the socket.
+alacritty msg create-window --working-directory "${1:-$PWD}" >/dev/null 2>&1 && exit 0
+
+# If the window creation failed, delete old socket and start anew.
+rm -f "$ALACRITTY_SOCKET"
+nohup alacritty --socket "$ALACRITTY_SOCKET" --daemon >/dev/null 2>&1 &
+
+# Wait till alacritty creates a socket.
+wait=1
+while ! [ -S "$ALACRITTY_SOCKET" ] && [ "$wait" -lt 50 ]
+do
+    sleep 0.1
+    wait=$(( wait + 1 ))
+done
+
+if [ -S "$ALACRITTY_SOCKET" ]
+then
+    alacritty msg create-window --working-directory "${1:-$PWD}"
+else
+    echo >&2 "${0##*/}: alacritty(1) failed to create socket after 5 seconds"
+fi

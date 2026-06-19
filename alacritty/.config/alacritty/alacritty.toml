@@ -1,0 +1,87 @@
+[window]
+decorations = "Full"
+dimensions = { columns = 95, lines = 42 }
+dynamic_padding = true
+dynamic_title = true
+opacity = 1.0
+option_as_alt = "None"
+padding = { x = 6, y = 6 }
+startup_mode = "Windowed"
+title = "alacritty"
+
+[scrolling]
+history = 50000
+multiplier = 3
+
+[font]
+size = 9
+
+[font.normal]
+family = "Source Code Pro"
+style = "Semibold"
+
+[font.bold]
+family = "Source Code Pro"
+style = "Semibold"
+
+[font.italic]
+family = "Source Code Pro"
+style = "Semibold Italic"
+
+[font.bold_italic]
+family = "Source Code Pro"
+style = "Semibold Italic"
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+unfocused_hollow = true
+thickness = 0.15
+
+[terminal]
+
+[mouse]
+hide_when_typing = true
+
+[general]
+live_config_reload = true
+
+[bell]
+duration = 0
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.normal]
+black = "#0f0f0f"
+red = "#af5f5f"
+green = "#5f875f"
+yellow = "#87875f"
+blue = "#5f87af"
+magenta = "#5f5f87"
+cyan = "#5f8787"
+white = "#6c6c6c"
+
+[colors.bright]
+black = "#2c2c2c"
+red = "#ff8700"
+green = "#87af87"
+yellow = "#d7d787"
+blue = "#8fafd7"
+magenta = "#8787af"
+cyan = "#5fafaf"
+white = "#ffffff"
+
+[colors.primary]
+background = "#000000"
+foreground = "#cecece"
+
+[colors.cursor]
+text = "#000000"
+cursor = "#dd4010"
+
+[colors.selection]
+text = "#585858"
+background = "#dadada"

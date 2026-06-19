@@ -318,11 +318,17 @@ for_window [window_type="splash"] border pixel 0 # Mathematica logo, for example
 # Terminals and file browser (workspace $ws1) {{{2
 # ------------------------------------------------
 
-for_window [class="URxvt"] move container to workspace $ws1
-for_window [class="URxvt"] focus
+for_window [class="Alacritty"] move container to workspace $ws1
+for_window [class="Alacritty"] focus
 
 for_window [class="Pcmanfm"] move container to workspace $ws1
 for_window [class="Pcmanfm"] focus
+
+for_window [class="XTerm"] move container to workspace $ws1
+for_window [class="XTerm"] focus
+
+for_window [class="URxvt"] move container to workspace $ws1
+for_window [class="URxvt"] focus
 
 # Browsers (workspace $ws2) {{{2
 # ------------------------------

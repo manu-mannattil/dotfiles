@@ -112,6 +112,11 @@ install() {
 # Targets {{{1
 # ------------
 
+# :target: alacritty - terminal emulator
+__install_alacritty() {
+    install "alacritty/.config/alacritty"
+}
+
 # :target: aria2 - aria2 download accelerator configuration
 __install_aria2() {
     install "aria2/.aria2"
