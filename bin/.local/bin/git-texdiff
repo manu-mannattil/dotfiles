@@ -10,7 +10,7 @@ repo="${repo##*/}"
 
 [[ "$repo" ]] || {
     echo >&2 "${0##*/}: fatal; not a valid git repository"
-    exit 1
+    exit 1 
 }
 
 args=()
@@ -26,12 +26,15 @@ do
     shift
 done
 
-git-latexdiff --latexmk                 \
-              --ln-untracked            \
-              --quiet                   \
-              --latexpand               \
-              --makeatletter            \
-              --output "$out"           \
-              --ignore-latex-errors "${args[@]}"
+
+# For some unknown reason, running git-latexmk directly results in rm(1)
+# throwing an error saying that the paper PDF file is not found.
+bash /usr/bin/git-latexdiff --latexmk                 \
+                            --ln-untracked            \
+                            --quiet                   \
+                            --latexpand               \
+                            --makeatletter            \
+                            --output "$out"           \
+                            --ignore-latex-errors "${args[@]}"
 
 nohup xdg-open "$out" </dev/null >/dev/null 2>&1 &
