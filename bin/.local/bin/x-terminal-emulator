@@ -1,18 +1,22 @@
 #!/bin/sh
 #
-# Usage: x-terminal-emulator <dir>
+# Usage: x-terminal-emulator [<args>]
 #
 # Use Alacritty in daemon mode as the x-terminal-emulator.
 # Debian usually links lxterm to /etc/alternatives/x-terminal-emulator
 #
 
-ALACRITTY_SOCKET="/tmp/alacritty-$USER.sock"
+: "${XDG_CACHE_HOME:="$HOME/.cache"}"
+mkdir -p "$XDG_CACHE_HOME"
+ALACRITTY_SOCKET="$XDG_CACHE_HOME/alacritty.sock"
 export ALACRITTY_SOCKET
 
-# Try to create a new window by connecting to the socket.
-alacritty msg create-window --working-directory "${1:-$PWD}" >/dev/null 2>&1 && exit 0
+# Try to create a new window by connecting to the socket.  The "$PWD"
+# argument is required if you want to open an alacritty window in the
+# current directory thru a graphical file manager like PCManFM.
+alacritty msg create-window --working-directory "$PWD" "$@" && exit 0
 
-# If the window creation failed, delete old socket and start anew.
+# If the window creation failed, delete stale socket and start anew.
 rm -f "$ALACRITTY_SOCKET"
 nohup alacritty --socket "$ALACRITTY_SOCKET" --daemon >/dev/null 2>&1 &
 
@@ -26,7 +30,7 @@ done
 
 if [ -S "$ALACRITTY_SOCKET" ]
 then
-    alacritty msg create-window --working-directory "${1:-$PWD}"
+    alacritty msg create-window --working-directory "$PWD" "$@"
 else
     echo >&2 "${0##*/}: alacritty(1) failed to create socket after 5 seconds"
 fi
