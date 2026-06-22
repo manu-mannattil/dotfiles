@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
 
-# Do a distclean.  Without this, all PDFs will be symlinked by
-# git-latexdiff.  This would result in the actual PDF output getting
-# overwritten with the diff.
-latexmk -norc -pdf -ps- -dvi- -C >/dev/null 2>&1
-
 repo=$(git rev-parse --show-toplevel 2>/dev/null)
 repo="${repo##*/}"
 
 [[ "$repo" ]] || {
     echo >&2 "${0##*/}: fatal; not a valid git repository"
-    exit 1 
+    exit 1
 }
 
 args=()
@@ -26,15 +21,20 @@ do
     shift
 done
 
-
-# For some unknown reason, running git-latexmk directly results in rm(1)
-# throwing an error saying that the paper PDF file is not found.
-bash /usr/bin/git-latexdiff --latexmk                 \
-                            --ln-untracked            \
-                            --quiet                   \
-                            --latexpand               \
-                            --makeatletter            \
-                            --output "$out"           \
-                            --ignore-latex-errors "${args[@]}"
+# There is a git-latexdiff distributed with the texlive-extra-utils
+# package in Debian.  It's located at /usr/bin/git-latexdiff.  If
+# git-latexdiff is installed from the GitLab repo, then the script is
+# put at /usr/lib/git-core/git-latexdiff.  However, with the latest
+# script, there's a bug when --ln-untracked is used.  It tries to rm
+# "$pdffile" and throws an error if $pdffile isn't found.  To fix it,
+# change the rm command to rm -rf.
+# https://gitlab.com/git-latexdiff/git-latexdiff/-/merge_requests/27
+/usr/lib/git-core/git-latexdiff --latexmk                 \
+                                --ln-untracked            \
+                                --quiet                   \
+                                --latexpand               \
+                                --makeatletter            \
+                                --output "$out"           \
+                                --ignore-latex-errors "${args[@]}"
 
 nohup xdg-open "$out" </dev/null >/dev/null 2>&1 &
