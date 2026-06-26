@@ -9,5 +9,9 @@ local function use_fast_profile()
         mp.commandv("set", "profile", "fast")
     end
 end
-
 mp.register_event("file-loaded", use_fast_profile)
+
+-- Show the filename briefly whenever loading a file.
+mp.register_event("file-loaded", function()
+    mp.osd_message(mp.get_property("filename"), 2)
+end)
