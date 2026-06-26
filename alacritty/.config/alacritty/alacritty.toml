@@ -85,3 +85,9 @@ cursor = "#dd4010"
 [colors.selection]
 text = "#585858"
 background = "#dadada"
+
+[keyboard]
+bindings = [
+    { key = "V", mods = "Control|Alt", action = "Paste" },
+    { key = "C", mods = "Control|Alt", action = "Copy" },
+]

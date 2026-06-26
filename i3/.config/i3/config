@@ -435,6 +435,10 @@ for_window [class="(zoom|join\?)"] focus
 for_window [class="(zoom|join\?)"] floating enable
 for_window [class="(zoom|join\?)"] resize set 80 ppt 80 ppt
 
+# for_window [class="zoom" title="as_toolbar"] floating enable
+# for_window [class="zoom" title="as_toolbar"] sticky enable
+# for_window [class="zoom" title="as_toolbar"] move position 100 px 40 px
+
 # The hyphen is so that Inkscape extracted from the AppImage gets
 # recognized.  For reasons I don't understand, just checking the class
 # name doesn't work (version 1.2.1).

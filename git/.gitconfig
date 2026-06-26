@@ -29,6 +29,8 @@
   stt = !git --no-pager diff --stat
   wd = diff --word-diff --unified=0 --word-diff-regex=[^[:space:],]+ --color-words
   dw = wd
+  # Last commit by user.
+  lastme = !git --no-pager log --author="$(git config user.email)" --format="%H" -n 1
 
 [color]
   ui = auto
