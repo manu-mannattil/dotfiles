@@ -527,7 +527,7 @@ __install_x() {
 
     # Location info for redshift.
     echo >&2 "${0##*/}: attempting to fetch location info"
-    location=$(wget -q --no-config -T 5 -O - http://ip-api.com/line/?fields=lat,lon 2>/dev/null)
+    location=$(wget -q --no-config -T 5 -O - 'http://ip-api.com/line/?fields=lat,lon' 2>/dev/null)
     if [[ "$location" ]]
     then
         printf '%s:%s\n' $location >"$HOME/.location"

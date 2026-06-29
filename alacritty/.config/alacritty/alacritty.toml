@@ -1,3 +1,5 @@
+# General --------------------------------------------------------------
+
 [window]
 decorations = "Full"
 dimensions = { columns = 95, lines = 42 }
@@ -12,6 +14,25 @@ title = "alacritty"
 [scrolling]
 history = 50000
 multiplier = 3
+
+[mouse]
+hide_when_typing = true
+
+[general]
+live_config_reload = true
+
+[bell]
+duration = 0
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+unfocused_hollow = true
+thickness = 0.15
+
+# Font -----------------------------------------------------------------
 
 [font]
 size = 9
@@ -32,24 +53,7 @@ style = "Semibold Italic"
 family = "Source Code Pro"
 style = "Semibold Italic"
 
-[selection]
-save_to_clipboard = true
-
-[cursor]
-style = { shape = "Block", blinking = "Off" }
-unfocused_hollow = true
-thickness = 0.15
-
-[terminal]
-
-[mouse]
-hide_when_typing = true
-
-[general]
-live_config_reload = true
-
-[bell]
-duration = 0
+# Colors ---------------------------------------------------------------
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -86,8 +90,16 @@ cursor = "#dd4010"
 text = "#585858"
 background = "#dadada"
 
+# Bindings -------------------------------------------------------------
+
 [keyboard]
 bindings = [
     { key = "V", mods = "Control|Alt", action = "Paste" },
     { key = "C", mods = "Control|Alt", action = "Copy" },
 ]
+
+# This is just to be consistent with tmux's shift + middle click paste.
+[[mouse.bindings]]
+mouse = "Middle"
+mods = "Shift"
+action = "PasteSelection"

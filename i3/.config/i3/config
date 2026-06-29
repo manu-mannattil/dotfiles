@@ -310,6 +310,7 @@ for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="(?i)nm-connection-editor"] floating enable
 for_window [title="editinvim"] floating enable
 for_window [class="calibre"] floating enable
+for_window [class="feh"] floating enable
 
 # No border for the applications below.
 for_window [class="XWrits"] border pixel 0
@@ -430,7 +431,7 @@ for_window [class="Virt-manager"] resize set 60 ppt 80 ppt
 # Large/bloated GUIs II (workspace $ws9) {{{2
 # -------------------------------------------
 
-for_window [class="(zoom|join\?)"] move container to workspace $ws9
+# for_window [class="(zoom|join\?)"] move container to workspace $ws9
 for_window [class="(zoom|join\?)"] focus
 for_window [class="(zoom|join\?)"] floating enable
 for_window [class="(zoom|join\?)"] resize set 80 ppt 80 ppt
