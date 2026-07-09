@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# https://wiki.documentfoundation.org/Development/Environment_variables
+
+# Fixes low-res PDF import.
+# https://ask.libreoffice.org/t/low-resolution-when-import-pdf-to-writer/84865
+export PDFIMPORT_RESOLUTION_DPI=300
+# Avoid hangs/slow startup caused by printer probing.
+export SAL_DISABLE_SYNCHRONOUS_PRINTER_DETECTION=1
+# Disable file locking.
+export SAL_ENABLE_FILE_LOCKING=0
+
+exec /usr/bin/libreoffice --norestore --nolockcheck "$@"
