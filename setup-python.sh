@@ -137,6 +137,9 @@ CONDA_MODULES=(
 
   # Module to convert a sentence to title case.
   titlecase
+
+  # Package providing a comprehensive number of algorithms and datasets for colour.
+  colour-science
 )
 
 install_conda_modules() {

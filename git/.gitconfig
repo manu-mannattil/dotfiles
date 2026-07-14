@@ -31,6 +31,8 @@
   dw = wd
   # Last commit by user.
   lastme = !git --no-pager log --author="$(git config user.email)" --format="%H" -n 1
+  # Last commit not by user.
+  lastnotme = !git log --format="%H:%ae" | grep -v "$(git config user.email)" | head -n 1 | cut -d: -f1
 
 [color]
   ui = auto

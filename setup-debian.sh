@@ -114,6 +114,7 @@ PACKAGES=(
 
   # Development
   build-essential # Informational list of build-essential packages
+  clang clangd clang-format clang-tidy lldb lld llvm llvm-dev llvm-runtime # clang
   cmake # cross-platform, open-source make system
   colordiff # tool to colorize 'diff' output
   diffutils # File comparison utilities
@@ -205,8 +206,10 @@ PACKAGES=(
   vainfo # Video Acceleration (VA) API for Linux -- info program
 
   # Image manipulation
+  czkawka-cli # Multi functional app to find duplicates, empty folders, similar images etc
   exif # command-line utility to show EXIF information in JPEG files
   exiftran # digital camera JPEG image transformer
+  feh # simple image viewer
   gifsicle # GIF compressor
   gimp # GNU Image Manipulation Program
   gimp-data-extras # Extra brushes and patterns for GIMP
@@ -216,7 +219,6 @@ PACKAGES=(
   libimage-exiftool-perl # library and program to read and write meta information in multimedia files
   optipng # advanced PNG (Portable Network Graphics) optimizer
   pngcrush # optimizes PNG (Portable Network Graphics) files
-  czkawka-cli # Multi functional app to find duplicates, empty folders, similar images etc
 
   # Internet
   elinks # advanced text-mode WWW browser

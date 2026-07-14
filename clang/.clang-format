@@ -1,4 +1,5 @@
 # vim: ft=yaml fdm=marker et sts=2 sw=2
+Language: Cpp
 BasedOnStyle: LLVM
 UseTab: Never
 IndentWidth: 4
@@ -13,3 +14,8 @@ PointerAlignment: Left
 #   int x = (int) 3.1415;
 #   int* x = (int*) malloc(N * sizeof(int));
 SpaceAfterCStyleCast: true
+
+# Don't intend "private:", "public:", etc.
+IndentAccessModifiers: false
+AccessModifierOffset: -4
+EmptyLineAfterAccessModifier: Always
