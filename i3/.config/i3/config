@@ -349,8 +349,8 @@ for_window [class="Liferea"] focus
 for_window [class="Zeal"] move container to workspace $ws2
 for_window [class="Zeal"] focus
 
-for_window [class="Ferdium"] move container to workspace $ws2
-for_window [class="Ferdium"] focus
+for_window [class="ferdium"] move container to workspace $ws2
+for_window [class="ferdium"] focus
 
 # Media (workspace $ws3) {{{2
 # ---------------------------

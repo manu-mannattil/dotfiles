@@ -10,4 +10,4 @@ export SAL_DISABLE_SYNCHRONOUS_PRINTER_DETECTION=1
 # Disable file locking.
 export SAL_ENABLE_FILE_LOCKING=0
 
-exec /usr/bin/libreoffice --norestore --nolockcheck "$@"
+exec /usr/bin/libreoffice --nolockcheck "$@"

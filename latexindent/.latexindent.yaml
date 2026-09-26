@@ -167,10 +167,10 @@ lookForAlignDelims:
 #       \end{itemize}
 # then populate indentAfterItems. See also itemNames
 indentAfterItems:
-    itemize: 1
-    enumerate: 1
-    description: 1
-    list: 1
+    itemize: 0
+    enumerate: 0
+    description: 0
+    list: 0
 
 # if you want to use other names for your items (such as, for example, part)
 # then populate them here- note that you can trick latexindent.pl
