@@ -4,4 +4,4 @@
 unset GDK_SCALE
 unset GDK_DPI_SCALE
 
-nohup /usr/bin/signal-desktop "$@" >/dev/null 2>&1 &
+nohup /usr/bin/signal-desktop --use-tray-icon "$@" >/dev/null 2>&1 &
