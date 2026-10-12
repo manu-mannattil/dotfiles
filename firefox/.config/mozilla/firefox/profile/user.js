@@ -371,5 +371,9 @@ user_pref("browser.tabs.splitView.enabled", false);
 // Mozilla will add the downloaded file to the "Recent Documents" folder.
 user_pref("browser.download.manager.addToRecentDocs", false);
 
+// I'll use the old Firefox, thank you very much!
+user_pref("browser.nova.enabled", false);
+user_pref("pdfjs.enableNova", false);
+
 // Internal custom pref to ensure that we've reach the end without syntax errors.
 user_pref("_user.js.parrot", "SUCCESS: Firefox is not dead, he's, he's restin'!");
