@@ -1,0 +1,30 @@
+# ThinkFan configuration for Lenovo ThinkPad P43s
+#
+# Temperatures are in degrees Celsius.
+#
+# Levels:
+#   [fan_level, lower_threshold, upper_threshold]
+#
+# The fan advances to the next level when the temperature
+# reaches the upper threshold, and returns to the previous
+# level when it falls below the lower threshold.
+
+sensors:
+  # Intel CPU package temperature
+  - hwmon: /sys/class/hwmon
+    name: coretemp
+    indices: [1]
+
+fans:
+  # ThinkPad ACPI fan control
+  - tpacpi: /proc/acpi/ibm/fan
+
+levels:
+  - [0,  0,  50]
+  - [1, 47,  57]
+  - [2, 54,  62]
+  - [3, 59,  67]
+  - [4, 64,  72]
+  - [5, 69,  77]
+  - [6, 74,  82]
+  - [7, 79, 32767]
