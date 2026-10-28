@@ -3,6 +3,7 @@
 //    https://github.com/arkenfox/user.js
 //    https://github.com/yokoffing/Betterfox
 //    https://github.com/corbindavenport/just-the-browser/tree/main/firefox
+//    https://www.sacredheartsc.com/blog/browser-de-slop/
 //
 // Librewolf policies file: https://codeberg.org/librewolf/settings/src/branch/master/distribution/policies.json
 // Librewolf config: https://codeberg.org/librewolf/settings/src/branch/master/librewolf.cfg
@@ -32,7 +33,7 @@ user_pref("privacy.trackingprotection.socialtracking.enabled", true);
 // Disables sending additional analytics to web servers.
 // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon
 // This breaks some sites, e.g., perplexity.ai.
-// user_pref("beacon.enabled", false);
+user_pref("beacon.enabled", false);
 
 // Perform DNS lookups through the SOCKS proxy itself.
 user_pref("network.proxy.socks_remote_dns", true);
@@ -160,6 +161,8 @@ user_pref("identity.fxaccounts.enabled", false);
 // Disable "privacy-preserving ad measurement".
 user_pref("dom.private-attribution.submission.enabled", false);
 
+user_pref("signon.firefoxRelay.feature", false);
+
 // ------------- AI nonsense -------------
 
 user_pref("browser.ai.control.default", "blocked");
@@ -201,7 +204,7 @@ user_pref("network.trr.bootstrapAddress", "9.9.9.9");
 // DNS over HTTPS (DoH).
 // https://github.com/curl/curl/wiki/DNS-over-HTTPS
 // https://adguard-dns.io/kb/general/dns-providers
-user_pref("network.trr.uri", "https://family.adguard-dns.com/dns-query");
+user_pref("network.trr.uri", "https://adguard-dns.com/dns-query");
 
 // Enable encrypted server name indication (SNI), which conceals the
 // hostname during TLS connections: https://www.cloudflare.com/ssl/encrypted-sni/

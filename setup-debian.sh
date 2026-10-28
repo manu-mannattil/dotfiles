@@ -24,6 +24,8 @@
 #   Calibre               http://calibre-ebook.com/download_linux
 #   Latexmk               https://www.cantab.net/users/johncollins/latexmk/versions.html
 #
+# NOTE: The non-free repository must be enabled in /etc/apt/sources.list
+#
 
 set -eu
 set -o pipefail
@@ -135,6 +137,7 @@ PACKAGES=(
   # Display and X11
   arandr # Simple visual front end for XRandR
   brightnessctl # Control backlight brightness
+  dbus-x11 # simple interprocess messaging system
   hsetroot # tool for composing root-pixmaps for X11
   mesa-utils # Miscellaneous Mesa GL utilities
   picom # compositor for X11
@@ -423,7 +426,7 @@ apt_wget() {
 __nonapt() {
   PACKAGES_DOWNLOAD=(
     'https://download.xnview.com/XnViewMP-linux-x64.deb' # XnView image viewer
-    'https://zoom.us/client/latest/zoom_amd64.deb' # Zoom
+    # 'https://zoom.us/client/latest/zoom_amd64.deb' # Zoom
   )
 
   # Ferdium - client for WhatsApp, Discord, etc.
@@ -447,11 +450,9 @@ __extrepo() {
   extrepo enable mozilla
   extrepo enable signal
   extrepo enable google_chrome
-  extrepo enable github-cli
 
   EXTREPO_PACKAGES=(
     firefox
-    gh
     google-chrome-stable
     signal-desktop
   )

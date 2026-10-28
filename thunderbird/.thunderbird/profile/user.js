@@ -61,5 +61,9 @@ user_pref("mail.ui.display.dateformat.thisweek", 4);
 // Always display the timezone of sender.
 user_pref("mailnews.display.date_senders_timezone", true);
 
+// Use external browser for OAuth2 authentication.
+// This is required to properly handle passkeys.
+user_pref("mailnews.oauth.useExternalBrowser", true);
+
 // Internal custom pref to ensure that we've reach the end without syntax errors.
 user_pref("_user.js.parrot", "SUCCESS: Thunderbird is not dead, he's, he's restin'!");
