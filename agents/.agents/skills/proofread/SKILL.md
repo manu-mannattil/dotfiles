@@ -775,17 +775,7 @@ Compound adjectives before a noun must be hyphenated.
 - `[INFO]` if a result that is mathematically trivial is presented as a
   significant finding without qualification. `[VIBE]`
 
-#### 4.11 Parameter values in method sections
-
-- `[WARN]` if a specific numerical value (e.g., `200 ms`, `250 Hz`, `0.4 rad`)
-  appears in the method description section rather than in the experimental
-  setup section or a parameter table. Method sections should use symbolic
-  parameter names (e.g., `\Delta T`, `f_{\text{shield}}`); concrete values
-  belong in the experiments section. `[MIX]`
-- `[WARN]` if the `siunitx` package is not used, e.g., \SI{200}{\milli
-  \second}. `[HARD]`
-
-#### 4.12 Enumeration markers
+#### 4.11 Enumeration markers
 
 - `[WARN]` if "First, ...", "Second, ...", "Third, ..." enumeration markers are
   used when the corresponding items are more than one paragraph apart. When
@@ -941,7 +931,7 @@ report below) ``` Then output any skipped issues as a report.
 
 ## Output Format
 
-After all checks are complete, produce a single Markdown report. Follow the
+After all checks are complete, produce a single .tex LaTeX report. Follow the
 structure defined in `templates/output_template.md` exactly — use it as the
 skeleton and fill in every placeholder.
 
@@ -987,10 +977,7 @@ number.
 After writing the Markdown report, automatically convert it to PDF by running:
 
 ```bash
-python ~/.agents/skills/proofread/scripts/generate_report_pdf.py <report.md>
+latexmk <report.tex>
 ```
 
-Run this as the final step of report mode. If the script fails (missing
-`pandoc` or LaTeX), print the error and note that the Markdown report is still
-complete and readable. The LaTeX template is at
-`~/.claude/skills/proofreading/templates/report_latex.tex`.
+Run this as the final step of report mode.

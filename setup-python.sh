@@ -81,8 +81,6 @@ PROGRAMS=(
   yapf
   # youtube-dl fork with regular updates
   'yt-dlp[default,curl-cffi]'
-  # open source Dropbox client
-  maestral
   # download files from Google Drive
   gdown
   # compress and optimize SVGs

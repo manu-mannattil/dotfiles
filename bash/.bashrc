@@ -172,9 +172,6 @@ alias fmt='fmt -w 72'
 # Force dd to show progress.
 alias dd='dd status=progress'
 
-# Dropbox (use Maestral).
-alias dropbox='maestral'
-
 # Use the colordiff wrapper instead of calling diff directly.
 alias diff='colordiff'
 

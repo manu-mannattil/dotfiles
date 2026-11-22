@@ -462,25 +462,25 @@ __install_terminfo() {
 
 # :target: thunderbird - Thunderbird configuration
 __install_thunderbird() {
-    if [[ -f "$HOME/.config/thunderbird/profiles.ini" ]]
+    if [[ -f "$HOME/.thunderbird/profiles.ini" ]]
     then
         while IFS= read -r profile
         do
-            rm -f "$HOME/.config/thunderbird/$profile/user.js"
+            rm -f "$HOME/.thunderbird/$profile/user.js"
 
             # Use preferences from Firefox's user.js as well.
             cat "$REPO/firefox/.config/mozilla/firefox/profile/user.js" >  \
-            "$HOME/.config/thunderbird/$profile/user.js"
+            "$HOME/.thunderbird/$profile/user.js"
 
-            printf "\n\n" >>"$HOME/.config/thunderbird/$profile/user.js"
+            printf "\n\n" >>"$HOME/.thunderbird/$profile/user.js"
 
             cat "$REPO/thunderbird/.thunderbird/profile/user.js" >>        \
-            "$HOME/.config/thunderbird/$profile/user.js"
+            "$HOME/.thunderbird/$profile/user.js"
             echo >&2 "${0##*/}: thunderbird: created user.js for $profile"
 
             ln -v -sf "$REPO/thunderbird/.thunderbird/profile/chrome"      \
-                "$HOME/.config/thunderbird/$profile"
-        done < <(sed -n 's/^Path=//p' "$HOME/.config/thunderbird/profiles.ini")
+                "$HOME/.thunderbird/$profile"
+        done < <(sed -n 's/^Path=//p' "$HOME/.thunderbird/profiles.ini")
     fi
 }
 
