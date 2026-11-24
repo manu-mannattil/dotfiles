@@ -87,13 +87,12 @@ user_pref("browser.urlbar.suggest.addons", false);
 user_pref("browser.urlbar.suggest.amp", false);
 user_pref("browser.urlbar.suggest.fakespot", false);
 user_pref("browser.urlbar.suggest.importantDates", false);
-user_pref("browser.urlbar.suggest.market", false)
 user_pref("browser.urlbar.suggest.market", false);
 user_pref("browser.urlbar.suggest.mdn", false);
 user_pref("browser.urlbar.suggest.pocket", false);
 user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-user_pref("browser.urlbar.suggest.suggest.market", false)
+user_pref("browser.urlbar.suggest.suggest.market", false);
 user_pref("browser.urlbar.suggest.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.suggest.suggest.quicksuggest.sponsored", false);
 user_pref("browser.urlbar.suggest.suggest.topsites", false);
