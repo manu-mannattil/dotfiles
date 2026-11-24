@@ -18,3 +18,6 @@ server_names = [
   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
   refresh_delay = 72
   prefix = ''
+
+[blocked_names]
+  blocked_names_file = 'blocked-names.txt'
