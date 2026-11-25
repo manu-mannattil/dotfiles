@@ -392,11 +392,6 @@ __install_notmuch() {
     mkdir -vp "$HOME/.cache/mutt/notmuch/"{cur,new,tmp}
 }
 
-# :target: openbox - openbox stacking window manager
-__install_openbox() {
-    install "openbox/.config/openbox"
-}
-
 # :target: parallel - GNU parallel configuration
 __install_parallel() {
     install "parallel/.parallel/config"
@@ -477,11 +472,6 @@ __install_thunderbird() {
                 "$HOME/.thunderbird/$profile"
         done < <(sed -n 's/^Path=//p' "$HOME/.thunderbird/profiles.ini")
     fi
-}
-
-# :target: tint2 - tint2 panel configuration
-__install_tint2() {
-    install "tint2/.config/tint2"
 }
 
 # :target: tmux - tmux configuration
