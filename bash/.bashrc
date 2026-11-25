@@ -152,6 +152,9 @@ alias cal='ncal -A 3 -B 2'
 # Don't restrict box-width in cowsay.
 alias cowsay='cowsay -n'
 
+# Meaningful DNS information while removing the unnecessary introductory output.
+alias dig='dig +noall +answer +authority +additional'
+
 # Write to the physical medium before exiting.  Important when making bootable
 # Linux USB sticks.  Also show progress.
 alias dd='dd conv=fdatasync status=progress'

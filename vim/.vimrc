@@ -594,10 +594,6 @@ noremap ,d g;
 " Change to the `alternate' file using backspace.
 nnoremap <BS> <C-^>
 
-" Insert the parent directory of the current file when typing %% in
-" command mode.
-cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
-
 " Buffer navigation tricks {{{2
 " -----------------------------
 

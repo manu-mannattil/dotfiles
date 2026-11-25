@@ -259,6 +259,7 @@ PACKAGES=(
 
   # Network
   curl # command line tool for transferring data with URL syntax
+  dnscrypt-proxy # flexible DNS proxy with support for encrypted DNS protocols
   hexchat # IRC client for X based on X-Chat 2
   macchanger # utility for manipulating the MAC address of network interfaces
   megatools # download stuff from mega.nz
