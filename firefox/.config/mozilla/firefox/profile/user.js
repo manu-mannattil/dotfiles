@@ -269,8 +269,8 @@ user_pref("toolkit.cosmeticAnimations.enabled", false);
 
 // Font preferences.
 user_pref("font.default.x-western", "sans-serif");
-user_pref("font.name.sans-serif.x-western", "Nimbus Sans L");
-user_pref("font.name.serif.x-western", "Nimbus Roman No9 L");
+user_pref("font.name.sans-serif.x-western", "Helvetica");
+user_pref("font.name.serif.x-western", "Times New Roman");
 
 // Don't use the local ~/.mailcap file to look up file/program
 // associations.  However, don't change helpers.global_mailcap_file,
